@@ -2,7 +2,7 @@ import 'package:barbecue/barbecue.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test("table correctly implements equals", () {
+  test('table correctly implements equals', () {
     final table = Table(
       tableStyle: TableStyle(border: true),
       cellStyle: CellStyle(
@@ -16,7 +16,7 @@ void main() {
           paddingRight: 3,
           paddingTop: 4),
       body: TableSection(rows: [
-        Row(cells: [Cell("content")])
+        Row(cells: [Cell('content')])
       ]),
     );
     expect(table, equals(table));
@@ -35,7 +35,7 @@ void main() {
           paddingRight: 3,
           paddingTop: 4),
       body: TableSection(rows: [
-        Row(cells: [Cell("content")])
+        Row(cells: [Cell('content')])
       ]),
     );
     expect(table, equals(equalTable));
@@ -54,7 +54,7 @@ void main() {
           paddingRight: 3,
           paddingTop: 4),
       body: TableSection(rows: [
-        Row(cells: [Cell("content 2")])
+        Row(cells: [Cell('content 2')])
       ]),
     );
 

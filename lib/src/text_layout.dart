@@ -63,7 +63,7 @@ class SimpleLayout implements TextLayout {
       }
     }();
 
-    int index = 0;
+    var index = 0;
 
     for (final line in cell.cell.content.split('\n')) {
       final lineWidth = leftPadding +

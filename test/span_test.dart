@@ -29,11 +29,11 @@ void main() {
         body: TableSection(rows: [
       Row(
         cells: [
-          Cell("11", style: CellStyle(borderRight: true)),
-          Cell("22"),
+          Cell('11', style: CellStyle(borderRight: true)),
+          Cell('22'),
         ],
       ),
-      Row(cells: [Cell("33333", columnSpan: 2)])
+      Row(cells: [Cell('33333', columnSpan: 2)])
     ]));
 
     expect(
@@ -49,48 +49,48 @@ void main() {
     final table = Table(
         body: TableSection(rows: [
       Row(cells: [
-        Cell("8\n8\n8\n8\n8\n8\n8\n8", rowSpan: 8),
-        Cell("4\n4\n4\n4", rowSpan: 4),
-        Cell("2\n2", rowSpan: 2),
-        Cell("1")
+        Cell('8\n8\n8\n8\n8\n8\n8\n8', rowSpan: 8),
+        Cell('4\n4\n4\n4', rowSpan: 4),
+        Cell('2\n2', rowSpan: 2),
+        Cell('1')
       ]),
       Row(
-        cells: [Cell("1")],
+        cells: [Cell('1')],
       ),
       Row(
         cells: [
-          Cell("2\n2", rowSpan: 2),
-          Cell("1"),
+          Cell('2\n2', rowSpan: 2),
+          Cell('1'),
         ],
       ),
       Row(
-        cells: [Cell("1")],
+        cells: [Cell('1')],
       ),
       Row(cells: [
-        Cell("4\n4\n4\n4", rowSpan: 4),
-        Cell("2\n2", rowSpan: 2),
-        Cell("1")
+        Cell('4\n4\n4\n4', rowSpan: 4),
+        Cell('2\n2', rowSpan: 2),
+        Cell('1')
       ]),
       Row(
-        cells: [Cell("1")],
+        cells: [Cell('1')],
       ),
       Row(
         cells: [
-          Cell("2\n2", rowSpan: 2),
-          Cell("1"),
+          Cell('2\n2', rowSpan: 2),
+          Cell('1'),
         ],
       ),
       Row(
         cells: [
-          Cell("1"),
+          Cell('1'),
         ],
       ),
       Row(
         cells: [
-          Cell("1"),
-          Cell("1"),
-          Cell("1"),
-          Cell("1"),
+          Cell('1'),
+          Cell('1'),
+          Cell('1'),
+          Cell('1'),
         ],
       ),
     ]));
@@ -110,14 +110,14 @@ void main() {
             .trimEveryLine());
   });
 
-  test("invalid rowspan throws exception", () {
+  test('invalid rowspan throws exception', () {
     expect(
         () => Table(
               body: TableSection(
                 rows: [
                   Row(
                     cells: [
-                      Cell("2", rowSpan: 2),
+                      Cell('2', rowSpan: 2),
                     ],
                   ),
                 ],

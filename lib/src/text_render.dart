@@ -48,8 +48,7 @@ extension Render on Table {
       if ((columnIndex == 0 && tableStyle?.border == true ||
               canonicalStyle?.borderLeft == true) &&
           (columnIndex > 0 || tableStyle?.borderStyle != BorderStyle.Hidden)) {
-        final oldValue =
-            (columnBorderWidths[columnIndex] == 0) ? '0 ->' : 'already';
+
 
         columnBorderWidths[columnIndex] = 1;
       }
@@ -58,16 +57,13 @@ extension Render on Table {
               canonicalStyle?.borderRight == true) &&
           (columnIndex + columnSpan < columnCount ||
               tableStyle?.borderStyle != BorderStyle.Hidden)) {
-        final oldValue = (columnBorderWidths[columnIndex + columnSpan] == 0)
-            ? '0 ->'
-            : 'already';
+
 
         columnBorderWidths[columnIndex + columnSpan] = 1;
       }
       if ((rowIndex == 0 && tableStyle?.border == true ||
               canonicalStyle?.borderTop == true) &&
           (rowIndex > 0 || tableStyle?.borderStyle != BorderStyle.Hidden)) {
-        final oldValue = (rowBorderHeights[rowIndex] == 0) ? '0 ->' : 'already';
 
         rowBorderHeights[rowIndex] = 1;
       }
@@ -75,8 +71,7 @@ extension Render on Table {
               canonicalStyle?.borderBottom == true) &&
           (rowIndex + rowSpan < rowCount ||
               tableStyle?.borderStyle != BorderStyle.Hidden)) {
-        final oldValue =
-            (rowBorderHeights[rowIndex + rowSpan] == 0) ? '0 ->' : 'already';
+
 
         rowBorderHeights[rowIndex + rowSpan] = 1;
       }
@@ -89,7 +84,6 @@ extension Render on Table {
               Comparable.compare(a.cell.columnSpan, b.cell.columnSpan));
 
     for (final positionedCell in sortedColumnSpanCells) {
-      final rowIndex = positionedCell.rowIndex;
       final columnIndex = positionedCell.columnIndex;
       final cell = positionedCell.cell;
 
@@ -134,7 +128,6 @@ extension Render on Table {
 
     for (final positionedCell in sortedRowSpanCells) {
       final rowIndex = positionedCell.rowIndex;
-      final columnIndex = positionedCell.columnIndex;
       final cell = positionedCell.cell;
 
       final layout = layouts[cell];

@@ -56,7 +56,7 @@ extension Visual on String {
   }
 
   int codePointCount({int startIndex = 0, int endIndex}) {
-    endIndex ??= this.length;
+    endIndex ??= length;
 
     return Runes(substring(startIndex, endIndex)).length;
   }

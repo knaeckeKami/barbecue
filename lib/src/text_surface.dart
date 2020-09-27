@@ -46,8 +46,9 @@ class TextSurface extends TextCanvas {
         .replaceRange(writeIndex, writeIndex + 1, unicodeChar.string);
   }
 
+  @override
   void write(int row, int column, String string) {
-    int lineIndex = 0;
+    var lineIndex = 0;
     for (final line in string.split('\n')) {
       final rowBuilder = rowBuilders[row + lineIndex];
       final writeStartIndex = rowBuilder.visualIndex(column);
