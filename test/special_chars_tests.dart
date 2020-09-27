@@ -22,7 +22,6 @@ void main() {
           Cell('ê'),
           Cell(';;'),
           Cell('Ф'),
-
         ],
       ),
     ]));
