@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:collection/collection.dart';
+
 import 'package:barbecue/src/int_country.dart';
 import 'package:barbecue/src/model.dart';
 
@@ -102,5 +104,33 @@ class Table {
       return null;
     }
     return cols[column];
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Table &&
+          runtimeType == other.runtimeType &&
+          header == other.header &&
+          body == other.body &&
+          footer == other.footer &&
+          cellStyle == other.cellStyle &&
+          tableStyle == other.tableStyle &&
+          rowCount == other.rowCount &&
+          columnCount == other.columnCount;
+
+  @override
+  int get hashCode =>
+      header.hashCode ^
+      body.hashCode ^
+      footer.hashCode ^
+      cellStyle.hashCode ^
+      tableStyle.hashCode ^
+      rowCount.hashCode ^
+      columnCount.hashCode;
+
+  @override
+  String toString() {
+    return 'Table{header: $header, body: $body, footer: $footer, cellStyle: $cellStyle, tableStyle: $tableStyle, rowCount: $rowCount, columnCount: $columnCount}';
   }
 }
