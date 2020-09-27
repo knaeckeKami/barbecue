@@ -18,9 +18,6 @@ abstract class TextCanvas {
     setCharacter(row, column, unicodeChar);
   }
 
-  void setCodePoint(int row, int column, int codePoint) {
-    setCharacter(row, column, Characters(String.fromCharCode(codePoint)));
-  }
 
   TextCanvas clip(int left, int right, int top, int bottom) {
     return ClippedTextCanvas(
