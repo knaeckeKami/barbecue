@@ -177,8 +177,6 @@ extension Render on Table {
 
     final surface = TextSurface(tableWidth, tableHeight);
 
-    print(rowCount);
-
     for (final rowIndex in Iterable<int>.generate(rowCount + 1)) {
       final rowDrawStartIndex = tableTops[rowIndex];
 
@@ -309,8 +307,6 @@ extension Render on Table {
 
     return surface.toString();
   }
-
-  void debug(String s) => print(s);
 }
 
 int _plus(int a, int b) => a + b;
