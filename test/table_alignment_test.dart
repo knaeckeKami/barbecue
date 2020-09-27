@@ -36,4 +36,47 @@ void main() {
           .trimEveryLine(),
     );
   });
+
+  test('can align text vertically', () {
+    final table = Table(
+        body: TableSection(rows: [
+      Row(
+        cells: [
+          Cell('''
+                  X__
+                  X__
+                  X__
+                  X__
+                  X__'''
+              .trimEveryLine()),
+          for (final alignment in [
+            TextAlignment.MiddleCenter,
+            TextAlignment.MiddleLeft,
+            TextAlignment.MiddleRight
+          ])
+            Cell(
+              'X',
+              style: CellStyle(alignment: alignment),
+            ),
+        ],
+      ),
+      Row(cells: [
+        Cell(""),
+        Cell("XXX"),
+        Cell("XXX"),
+        Cell("XXX"),
+      ]),
+    ]));
+
+    expect(
+      table.render(),
+      '''
+X__         
+X__         
+X__ X X    X
+X__         
+X__         
+   XXXXXXXXX''',
+    );
+  });
 }
