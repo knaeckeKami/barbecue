@@ -40,7 +40,6 @@ void main() {
     expect(table.hashCode, equals(equalTable.hashCode));
     expect(table.toString(), equals(equalTable.toString()));
 
-
     final unequalTable = Table(
       cellStyle: CellStyle(
           borderBottom: true,
@@ -60,6 +59,5 @@ void main() {
     expect(table, isNot(equals(unequalTable)));
     expect(table.hashCode, isNot(equals(unequalTable.hashCode)));
     expect(table.toString(), isNot(equals(unequalTable.toString())));
-
   });
 }

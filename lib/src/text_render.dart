@@ -4,8 +4,6 @@ import 'package:barbecue/src/text_border.dart';
 import 'package:barbecue/src/text_layout.dart';
 import 'package:barbecue/src/text_surface.dart';
 
-
-
 TextLayout _simpleLayoutFactory(PositionedCell cell) => SimpleLayout(cell);
 
 extension Render on Table {
