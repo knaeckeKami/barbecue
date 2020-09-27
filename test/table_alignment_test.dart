@@ -64,13 +64,13 @@ void main() {
         ],
       ),
       Row(cells: [
-        Cell(""),
-        Cell("XXX"),
-        Cell("XXX"),
-        Cell("XXX"),
-        Cell("XXX"),
-        Cell("XXX"),
-        Cell("XXX"),
+        Cell(''),
+        Cell('XXX'),
+        Cell('XXX'),
+        Cell('XXX'),
+        Cell('XXX'),
+        Cell('XXX'),
+        Cell('XXX'),
       ]),
     ]));
 

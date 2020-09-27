@@ -23,7 +23,7 @@ void main(List<String> arguments) {
           Row(cells: [
             Cell("42", style: CellStyle(alignment: TextAlignment.TopRight)),
             Cell("John Doe"),
-            Cell(redPen.write("Secret Agent"))
+            Cell(redPen("Secret Agent"))
           ]),
           Row(cells: [
             Cell("4711"),

@@ -63,12 +63,12 @@ void main() {
     expect(table.toString(), isNot(equals(unequalTable.toString())));
   });
 
-  test("PositionedCell equals/hashCode/toString()", () {
+  test('PositionedCell equals/hashCode/toString()', () {
     final cell = PositionedCell(
         rowIndex: 0,
         columnIndex: 1,
         canonicalStyle: CellStyle(paddingRight: 1),
-        cell: Cell("1"));
+        cell: Cell('1'));
 
     expect(cell, equals(cell));
     expect(cell.hashCode, equals(cell.hashCode));
@@ -77,7 +77,7 @@ void main() {
         rowIndex: 0,
         columnIndex: 1,
         canonicalStyle: CellStyle(paddingRight: 1),
-        cell: Cell("1"));
+        cell: Cell('1'));
 
     expect(cell, equals(equalCell));
     expect(cell.hashCode, equals(equalCell.hashCode));
@@ -86,7 +86,7 @@ void main() {
         rowIndex: 1,
         columnIndex: 1,
         canonicalStyle: CellStyle(paddingRight: 1),
-        cell: Cell("1"));
+        cell: Cell('1'));
 
     expect(cell, isNot(equals(unequalCell)));
     expect(cell.hashCode, isNot(equals(unequalCell.hashCode)));

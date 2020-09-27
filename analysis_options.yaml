@@ -10,8 +10,8 @@ include: package:pedantic/analysis_options.yaml
 #     - camel_case_types
 
 analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+  exclude:
+     - example/**
   language:
     strict-inference: true
     strict-raw-types: true
