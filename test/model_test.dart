@@ -91,6 +91,5 @@ void main() {
     expect(cell, isNot(equals(unequalCell)));
     expect(cell.hashCode, isNot(equals(unequalCell.hashCode)));
     expect(cell.toString(), isNot(equals(unequalCell.toString())));
-
   });
 }
