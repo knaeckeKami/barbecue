@@ -1,5 +1,7 @@
 # barbecue
 
+[![Build Status](https://github.com/knaeckeKami/barbecue/workflows/Build/badge.svg)](https://github.com/knaeckeKami/barbecue/actions)
+
 Render text tables for CLI-based dart applications.
 
 Ported from Kotlin to Dart from Jake Wharton's [picnic](https://github.com/JakeWharton/picnic).
