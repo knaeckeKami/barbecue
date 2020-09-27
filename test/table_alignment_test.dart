@@ -52,7 +52,10 @@ void main() {
           for (final alignment in [
             TextAlignment.MiddleCenter,
             TextAlignment.MiddleLeft,
-            TextAlignment.MiddleRight
+            TextAlignment.MiddleRight,
+            TextAlignment.BottomLeft,
+            TextAlignment.BottomCenter,
+            TextAlignment.BottomRight
           ])
             Cell(
               'X',
@@ -65,18 +68,21 @@ void main() {
         Cell("XXX"),
         Cell("XXX"),
         Cell("XXX"),
+        Cell("XXX"),
+        Cell("XXX"),
+        Cell("XXX"),
       ]),
     ]));
 
     expect(
       table.render(),
       '''
-X__         
-X__         
-X__ X X    X
-X__         
-X__         
-   XXXXXXXXX''',
+X__                  
+X__                  
+X__ X X    X         
+X__                  
+X__         X   X   X
+   XXXXXXXXXXXXXXXXXX''',
     );
   });
 }
