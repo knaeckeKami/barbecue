@@ -13,12 +13,12 @@ extension Visual on String {
         break;
       }
 
-      final jump =
-          codePointCount(startIndex: currentIndex, endIndex: match.start +currentIndex);
+      final jump = codePointCount(
+          startIndex: currentIndex, endIndex: match.start + currentIndex);
       if (jump > remaining) break;
 
       remaining -= jump;
-      currentIndex = match.end  +currentIndex;
+      currentIndex = match.end + currentIndex;
     }
     final runes = Runes(this);
     while (remaining > 0) {
@@ -56,7 +56,7 @@ extension Visual on String {
   }
 
   int codePointCount({int startIndex = 0, int endIndex}) {
-    endIndex ??= this.length ;
+    endIndex ??= this.length;
 
     return Runes(substring(startIndex, endIndex)).length;
   }
