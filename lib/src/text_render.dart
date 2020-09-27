@@ -14,7 +14,6 @@ extension Render on Table {
 
     final layouts = {for (var a in positionedCells) (a).cell: layoutFactory(a)};
 
-    print("Measure pass...\n 1/2...");
 
     final columnWidths = List<int>.filled(columnCount, 1);
     final columnBorderWidths = List<int>.filled(columnCount + 1, 0);
@@ -35,8 +34,6 @@ extension Render on Table {
         final currentWidth = columnWidths[columnIndex];
         final contentWidth = layout.measureWidth();
         if (contentWidth > currentWidth) {
-          debug(
-              "  ($rowIndex, $columnIndex) Column width $currentWidth -> $contentWidth");
 
           columnWidths[columnIndex] = contentWidth;
         }
@@ -47,8 +44,7 @@ extension Render on Table {
         final currentHeight = rowHeights[rowIndex];
         final contentHeight = layout.measureHeight();
         if (contentHeight > currentHeight) {
-          debug(
-              "  ($rowIndex, $columnIndex) Row height $currentHeight -> $contentHeight");
+
 
           rowHeights[rowIndex] = contentHeight;
         }
@@ -61,9 +57,6 @@ extension Render on Table {
             ? "0 ->"
             : "already";
 
-        debug(
-            "  ($rowIndex, $columnIndex) Left border $oldValue 1"
-        );
 
         columnBorderWidths[columnIndex] = 1;
       }
@@ -76,8 +69,6 @@ extension Render on Table {
             ? "0 ->"
             : "already";
 
-        debug(
-            "  ($rowIndex, $columnIndex) Right border $oldValue 1");
         columnBorderWidths[columnIndex + columnSpan] = 1;
       }
       if ((rowIndex == 0 && tableStyle?.border == true ||
@@ -85,9 +76,7 @@ extension Render on Table {
           (rowIndex > 0 || tableStyle?.borderStyle != BorderStyle.Hidden)) {
         final oldValue = (rowBorderHeights[rowIndex] == 0) ? "0 ->" : "already";
 
-        debug(
-            "  ($rowIndex, $columnIndex) Top border $oldValue 1"
-        );
+
         rowBorderHeights[rowIndex] = 1;
       }
       if ((rowIndex + rowSpan == rowCount && tableStyle?.border == true ||
@@ -98,18 +87,11 @@ extension Render on Table {
             ? "0 ->"
             : "already";
 
-        debug(
-            "  ($rowIndex, $columnIndex) Bottom border $oldValue 1");
         rowBorderHeights[rowIndex + rowSpan] = 1;
       }
     }
 
-    print("""
-    | Intermediate row heights: ${rowHeights}
-    | Intermediate row border heights: ${rowBorderHeights}
-    | Intermediate column widths: ${columnWidths}
-    | Intermediate column border widths: ${columnBorderWidths}
-    """);
+
 
     final sortedColumnSpanCells = positionedCells
         .where((it) => it.cell.columnSpan > 1)
@@ -196,13 +178,6 @@ extension Render on Table {
       }
     }
 
-    print("""
-    | Final row heights: ${rowHeights}
-    | Final row border heights: ${rowBorderHeights}
-    | Final column widths: ${columnWidths}
-    | Final column border widths: ${columnBorderWidths}
-    """);
-
     final tableLefts = List<int>(columnWidths.length + 1);
     int tableWidth;
 
@@ -225,19 +200,8 @@ extension Render on Table {
     tableTops[rowHeights.length] = top;
     tableHeight = top + rowBorderHeights[rowHeights.length];
 
-
-    print("""
-    | Width: $tableWidth
-    | Height: $tableHeight
-    | Lefts: ${tableLefts}
-    | Tops: ${tableTops}
-    """);
-
-    debug ( "Drawing pass..." );
-
     final surface = TextSurface(tableWidth, tableHeight);
 
-    print (" Borders..." );
     print(rowCount);
 
     for (final rowIndex in Iterable<int>.generate(rowCount +1 )) {
@@ -353,9 +317,7 @@ extension Render on Table {
         }
       }
     }
-
-    debug ( " Cells..." );
-
+    
     positionedCells.forEach((positionedCell) {
       final rowIndex = positionedCell.rowIndex;
       final columnIndex = positionedCell.columnIndex;
@@ -366,8 +328,6 @@ extension Render on Table {
       final cellRight = tableLefts[columnIndex + cell.columnSpan];
       final cellTop = tableTops[rowIndex] + rowBorderHeights[rowIndex];
       final cellBottom = tableTops[rowIndex + cell.rowSpan];
-
-      print("create canvas with $cellLeft $cellRight $cellTop $cellBottom");
 
       final canvas = surface.clip(cellLeft, cellRight, cellTop, cellBottom);
       final layout = layouts[cell];

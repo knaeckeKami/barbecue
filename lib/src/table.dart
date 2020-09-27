@@ -49,7 +49,6 @@ class Table {
               rowSpanCarries[columnIndex] > 0) {
             cellRow.add(_cellTable[rowIndex - 1][columnIndex]);
             rowSpanCarries.set(columnIndex, rowSpanCarries[columnIndex] - 1);
-            print("1. columnIndex++ $columnIndex ${rowSpanCarries.size}");
             columnIndex++;
           }
           final canonicalStyle = rowStyle + cell.style;
@@ -66,11 +65,9 @@ class Table {
 
           final rowSpanCarry = rowSpan - 1;
           var count = cell.columnSpan;
-          print("span:" +count.toString());
           while (count-- > 0) {
             cellRow.add(positionedCell);
             rowSpanCarries.set(columnIndex, rowSpanCarry);
-            print("2. columnIndex++ $columnIndex ${rowSpanCarries.size}");
 
             columnIndex++;
           }
@@ -109,11 +106,4 @@ class Table {
 
   }
 
-  void printTable(){
-    for(final row in _cellTable){
-      for(final col in row){
-        print(col);
-      }
-    }
-  }
 }
