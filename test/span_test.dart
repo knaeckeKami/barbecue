@@ -125,4 +125,29 @@ void main() {
             ),
         throwsA(isA<AssertionError>()));
   });
+
+  test('row spans can leave hole', () {
+    final table = Table(
+        body: TableSection(rows: [
+      Row(cells: [
+        Cell('1'),
+        Cell('2\n2', rowSpan: 2),
+        Cell('1'),
+        Cell('2\n2', rowSpan: 2),
+      ]),
+      Row(cells: [Cell('1')]),
+      Row(cells: [Cell('1'), Cell('1'), Cell('1'), Cell('1')])
+    ]));
+
+    expect(
+        table.render(),
+        '''
+         1212
+         12 2
+         1111'''
+            .trimEveryLine());
+
+    expect(table.getOrNull(1, 2), isNull);
+    expect(table.getOrNull(1, 3), isNotNull);
+  });
 }
