@@ -18,7 +18,6 @@ abstract class TextCanvas {
     setCharacter(row, column, unicodeChar);
   }
 
-
   TextCanvas clip(int left, int right, int top, int bottom) {
     return ClippedTextCanvas(
         canvas: this, left: left, right: right, top: top, bottom: bottom);
