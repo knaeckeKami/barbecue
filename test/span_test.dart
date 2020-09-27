@@ -109,4 +109,20 @@ void main() {
        1111'''
             .trimEveryLine());
   });
+
+  test("invalid rowspan throws exception", () {
+    expect(
+        () => Table(
+              body: TableSection(
+                rows: [
+                  Row(
+                    cells: [
+                      Cell("2", rowSpan: 2),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+        throwsA(isA<AssertionError>()));
+  });
 }
