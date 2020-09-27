@@ -1,5 +1,7 @@
 # barbecue
 
+
+[![pub package](https://img.shields.io/pub/v/barbecue.svg?label=barbecue)](https://pub.dartlang.org/packages/barbecue)
 [![Build Status](https://github.com/knaeckeKami/barbecue/workflows/Build/badge.svg)](https://github.com/knaeckeKami/barbecue/actions)
 [![codecov](https://codecov.io/gh/knaeckeKami/barbecue/branch/master/graph/badge.svg)](https://codecov.io/gh/knaeckeKami/barbecue)
 
