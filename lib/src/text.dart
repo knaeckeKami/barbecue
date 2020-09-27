@@ -1,27 +1,28 @@
 import 'package:characters/characters.dart';
 
 extension Visual on String {
-  static final ansiColorEscape = RegExp('\u001B\\[\\d+(\;\d+)*m');
+  static final ansiColorEscape = RegExp('\u001B' + r'\[\d+(;\d+)*m');
 
   int visualIndex(int index) {
     var currentIndex = 0;
     var remaining = index;
     while (true) {
-      final match = ansiColorEscape.matchAsPrefix(this, currentIndex);
+      final match = ansiColorEscape.firstMatch(substring(currentIndex));
+
       if (match == null) {
         break;
       }
 
       final jump =
-          codePointCount(startIndex: currentIndex, endIndex: match.start);
+          codePointCount(startIndex: currentIndex, endIndex: match.start +currentIndex);
       if (jump > remaining) break;
 
       remaining -= jump;
-      currentIndex = match.end + 1;
+      currentIndex = match.end  +currentIndex;
     }
-
+    final runes = Runes(this);
     while (remaining > 0) {
-      final codePoint = RuneIterator.at(this, currentIndex).current;
+      final codePoint = runes.elementAt(currentIndex);
       currentIndex += codePoint >= 65536 ? 2 : 1;
       remaining--;
     }
@@ -55,7 +56,8 @@ extension Visual on String {
   }
 
   int codePointCount({int startIndex = 0, int endIndex}) {
-    endIndex ??= this.length;
+    endIndex ??= this.length ;
+
     return Runes(substring(startIndex, endIndex)).length;
   }
 }
