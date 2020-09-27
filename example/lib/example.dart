@@ -1,6 +1,9 @@
 import 'package:barbecue/barbecue.dart';
+import 'package:ansicolor/ansicolor.dart';
+
 
 void main(List<String> arguments) {
+  final redPen = AnsiPen()..red(bold: true)..gray(bg: true, level: 0.1);
   print(Table(
       tableStyle: TableStyle(border: true),
       header: TableSection(rows: [
@@ -19,7 +22,7 @@ void main(List<String> arguments) {
           Row(cells: [
             Cell("42", style: CellStyle(alignment: TextAlignment.TopRight)),
             Cell("John Doe"),
-            Cell("Secret Agent")
+            Cell(redPen("Secret Agent"))
           ]),
           Row(cells: [
             Cell("4711"),

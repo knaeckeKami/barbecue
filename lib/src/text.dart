@@ -31,7 +31,7 @@ extension Visual on String {
   }
 
   int get visualCodePointCount {
-    /*
+
     // Fast path: no escapes.
     final firstEscape = indexOf('\u001B');
     if (firstEscape == -1) {
@@ -41,18 +41,16 @@ extension Visual on String {
     var currentIndex = firstEscape;
     var count = codePointCount(endIndex : firstEscape);
     while (true) {
-      final match = ansiColorEscape.matchAsPrefix(this,  currentIndex);
+      final match = ansiColorEscape.firstMatch(this.substring(currentIndex));
       if(match == null){
         break;
       }
-      count += codePointCount(startIndex :currentIndex, endIndex : match.start);
-    currentIndex = match.end + 1;
+      count += codePointCount(startIndex :currentIndex, endIndex : match.start +currentIndex);
+    currentIndex = match.end +currentIndex;
     }
     count += codePointCount(startIndex : currentIndex);
     return count;
-    */
 
-    return Characters(this).length;
   }
 
   int codePointCount({int startIndex = 0, int endIndex}) {

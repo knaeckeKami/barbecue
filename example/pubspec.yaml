@@ -9,5 +9,6 @@ environment:
 dependencies:
   barbecue:
     path: ../
+  ansicolor: ^1.0.5
 
 

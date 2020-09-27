@@ -45,7 +45,30 @@ void main() {
     expect(13, dualAnsiEscapes.visualIndex(4));
   });
 
-  test("code point count", () {
-    expect("a".codePointCount(), 1);
+   test("visualCodePointCountAscii", () {
+    expect(0, "".visualCodePointCount);
+    expect(1, "A".visualCodePointCount);
+    expect(2, "AA".visualCodePointCount);
+    expect(3, "AAA".visualCodePointCount);
+  });
+
+   test("visualCodePointCountAnsiEscapes",() {
+     expect(1, "\u001B[31;1;4mA\u001B[0m".visualCodePointCount);
+     expect(3, "A\u001B[31;1;4mA\u001B[0mA".visualCodePointCount);
+
+     expect(3, "\u001B[31;1;4mA\u001B[0m\u001B[31;1;4mA\u001B[0mA".visualCodePointCount);
+  });
+
+   test("visualCodePointCountUnicode",() {
+    // 1 UTF-8 bytes.
+     expect(2, "\u0031a".visualCodePointCount);
+    // 2 UTF-8 bytes.
+     expect(2, "\u00A3a".visualCodePointCount);
+    // 3 UTF-8 bytes.
+     expect(2, "\u20ACa".visualCodePointCount);
+    // 3 UTF-8 bytes, full-width.
+     expect(2, "\u5317a".visualCodePointCount);
+    // 4 UTF-8 bytes (2 * UTF-16), full-width.
+     expect(2, (String.fromCharCode(0x1F603) + "a").visualCodePointCount);
   });
 }

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:characters/characters.dart';
 import 'package:barbecue/src/model.dart';
 import 'package:barbecue/src/text_surface.dart';
+import 'package:barbecue/src/text.dart';
 
 abstract class TextLayout {
   int measureWidth();
@@ -28,7 +29,7 @@ class SimpleLayout implements TextLayout {
         cell.cell.content.split('\n').fold<int>(
               0,
               (previousValue, element) =>
-                  max(previousValue, Characters(element).length),
+                  max(previousValue, element.visualCodePointCount),
             );
   }
 
