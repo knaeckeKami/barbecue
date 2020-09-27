@@ -44,4 +44,8 @@ void main() {
     expect(12, dualAnsiEscapes.visualIndex(3));
     expect(13, dualAnsiEscapes.visualIndex(4));
   });
+
+  test("code point count", () {
+    expect("a".codePointCount(), 1);
+  });
 }
