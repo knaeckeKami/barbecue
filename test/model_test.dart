@@ -4,6 +4,7 @@ import 'package:test/test.dart';
 void main() {
   test("table correctly implements equals", () {
     final table = Table(
+      tableStyle: TableStyle(border: true),
       cellStyle: CellStyle(
           borderBottom: true,
           borderRight: true,
@@ -22,6 +23,7 @@ void main() {
     expect(table.hashCode, equals(table.hashCode));
 
     final equalTable = Table(
+      tableStyle: TableStyle(border: true),
       cellStyle: CellStyle(
           borderBottom: true,
           borderRight: true,

@@ -93,8 +93,6 @@ class Table {
     this._cellTable = _cellTable;
   }
 
-  PositionedCell get(int row, int column) => _cellTable[row]?.elementAt(column);
-
   PositionedCell getOrNull(int row, int column) {
     if (row < 0 || column < 0 || row >= _cellTable.length) {
       return null;
