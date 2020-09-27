@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:meta/meta.dart';
 
 enum TextAlignment {
   TopLeft,
@@ -130,7 +131,7 @@ class Row {
   final List<Cell> cells;
   final CellStyle cellStyle;
 
-  const Row({this.cells, this.cellStyle});
+  const Row({@required this.cells, this.cellStyle}) : assert(cells != null);
 
   @override
   bool operator ==(Object other) =>
@@ -153,7 +154,8 @@ class TableSection {
   final List<Row> rows;
   final CellStyle cellStyle;
 
-  const TableSection({this.rows, this.cellStyle});
+  const TableSection({@required this.rows, this.cellStyle})
+      : assert(rows != null);
 
   @override
   bool operator ==(Object other) =>
