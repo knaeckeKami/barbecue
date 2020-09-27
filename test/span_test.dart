@@ -13,11 +13,15 @@ void main() {
         ])
     ]));
 
-    expect(table.render(), '''
-88888888
-44444444
-22222222
-11111111''');
+    expect(
+      table.render(),
+      '''
+       88888888
+       44444444
+       22222222
+       11111111'''
+          .trimEveryLine(),
+    );
   });
 
   test('column spans across border does not expand', () {
@@ -39,5 +43,70 @@ void main() {
         33333'''
           .trimEveryLine(),
     );
+  });
+
+  test('handle row spans', () {
+    final table = Table(
+        body: TableSection(rows: [
+      Row(cells: [
+        Cell("8\n8\n8\n8\n8\n8\n8\n8", rowSpan: 8),
+        Cell("4\n4\n4\n4", rowSpan: 4),
+        Cell("2\n2", rowSpan: 2),
+        Cell("1")
+      ]),
+      Row(
+        cells: [Cell("1")],
+      ),
+      Row(
+        cells: [
+          Cell("2\n2", rowSpan: 2),
+          Cell("1"),
+        ],
+      ),
+      Row(
+        cells: [Cell("1")],
+      ),
+      Row(cells: [
+        Cell("4\n4\n4\n4", rowSpan: 4),
+        Cell("2\n2", rowSpan: 2),
+        Cell("1")
+      ]),
+      Row(
+        cells: [Cell("1")],
+      ),
+      Row(
+        cells: [
+          Cell("2\n2", rowSpan: 2),
+          Cell("1"),
+        ],
+      ),
+      Row(
+        cells: [
+          Cell("1"),
+        ],
+      ),
+      Row(
+        cells: [
+          Cell("1"),
+          Cell("1"),
+          Cell("1"),
+          Cell("1"),
+        ],
+      ),
+    ]));
+
+    expect(
+        table.render(),
+        '''
+       8421
+       8421
+       8421
+       8421
+       8421
+       8421
+       8421
+       8421
+       1111'''
+            .trimEveryLine());
   });
 }
