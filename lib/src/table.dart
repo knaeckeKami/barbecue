@@ -1,0 +1,119 @@
+import 'dart:math';
+
+import 'package:picnic/src/int_country.dart';
+import 'package:picnic/src/model.dart';
+
+class Table {
+  final TableSection header;
+  final TableSection body;
+  final TableSection footer;
+  final CellStyle cellStyle;
+  final TableStyle tableStyle;
+
+  final int rowCount;
+
+  int columnCount;
+  List<PositionedCell> positionedCells;
+
+  List<List<PositionedCell>> _cellTable;
+
+  Table({
+    this.header,
+    this.body,
+    this.footer,
+    this.cellStyle = const CellStyle(),
+    this.tableStyle,
+  }) : rowCount = (header?.rows?.length ?? 0) +
+            body.rows.length +
+            (footer?.rows?.length ?? 0) {
+    final rowSpanCarries = IntCounts();
+
+    final positionedCells = <PositionedCell>[];
+    final _cellTable = <List<PositionedCell>>[];
+    var rowIndex = 0;
+
+    for (final section
+        in [header, body, footer].where((element) => element != null)) {
+      final sectionStyle = cellStyle + section.cellStyle;
+      print("make table with ${section.rows.length} rows");
+      for (final row in section.rows) {
+        final rowStyle = sectionStyle + row.cellStyle;
+        final cellRow = <PositionedCell>[];
+        _cellTable.add(cellRow);
+        var columnIndex = 0;
+        var rawColumnIndex = 0;
+        for (final cell in row.cells) {
+          // Check for any previous rows' cells whose >1 rowSpan carries them into this row.
+          // When found, add them to the current row, pushing remaining cells to the right.
+          while (columnIndex < rowSpanCarries.size &&
+              rowSpanCarries[columnIndex] > 0) {
+            cellRow.add(_cellTable[rowIndex - 1][columnIndex]);
+            rowSpanCarries.set(columnIndex, rowSpanCarries[columnIndex] - 1);
+            print("1. columnIndex++ $columnIndex ${rowSpanCarries.size}");
+            columnIndex++;
+          }
+          final canonicalStyle = rowStyle + cell.style;
+          final positionedCell = PositionedCell(
+              rowIndex: rowIndex,
+              columnIndex: columnIndex,
+              cell: cell,
+              canonicalStyle: canonicalStyle);
+          positionedCells.add(positionedCell);
+
+          final rowSpan = cell.rowSpan;
+          assert(rowIndex + rowSpan <= rowCount,
+              "Cell $rawColumnIndex in row $rowIndex has rowSpan=$rowSpan but table rowCount=$rowCount");
+
+          final rowSpanCarry = rowSpan - 1;
+          var count = cell.columnSpan;
+          print("span:" +count.toString());
+          while (count-- > 0) {
+            cellRow.add(positionedCell);
+            rowSpanCarries.set(columnIndex, rowSpanCarry);
+            print("2. columnIndex++ $columnIndex ${rowSpanCarries.size}");
+
+            columnIndex++;
+          }
+          rawColumnIndex++;
+        }
+        // Check for any previous rows' cells whose >1 rowSpan carries them into this row.
+        // When found, add them to the current row, filling any gaps with null.
+        while (columnIndex < rowSpanCarries.size) {
+          if (rowSpanCarries[columnIndex] > 0) {
+            cellRow.add(_cellTable[rowIndex - 1][columnIndex]);
+            rowSpanCarries.set(columnIndex, rowSpanCarries[columnIndex] - 1);
+          } else {
+            cellRow.add(null);
+          }
+          columnIndex++;
+        }
+        rowIndex++;
+      }
+    }
+    columnCount = rowSpanCarries.size;
+    this.positionedCells = positionedCells;
+    this._cellTable = _cellTable;
+  }
+
+  PositionedCell get(int row, int column) => _cellTable[row]?.elementAt(column);
+
+  PositionedCell getOrNull(int row, int column) {
+    if(row < 0 || column < 0 || row >= _cellTable.length){
+      return null;
+    }
+    final cols = _cellTable[row];
+    if(column >= cols.length){
+      return null;
+    }
+    return cols[column];
+
+  }
+
+  void printTable(){
+    for(final row in _cellTable){
+      for(final col in row){
+        print(col);
+      }
+    }
+  }
+}
