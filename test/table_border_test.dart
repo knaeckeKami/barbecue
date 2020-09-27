@@ -172,8 +172,6 @@ void main() {
       ),
     );
 
-    print(table2.render());
-
     expect(
         table2.render(),
         '''
