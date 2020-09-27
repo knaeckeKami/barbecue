@@ -49,7 +49,7 @@ extension Render on Table {
               canonicalStyle?.borderLeft == true) &&
           (columnIndex > 0 || tableStyle?.borderStyle != BorderStyle.Hidden)) {
         final oldValue =
-            (columnBorderWidths[columnIndex] == 0) ? "0 ->" : "already";
+            (columnBorderWidths[columnIndex] == 0) ? '0 ->' : 'already';
 
         columnBorderWidths[columnIndex] = 1;
       }
@@ -59,15 +59,15 @@ extension Render on Table {
           (columnIndex + columnSpan < columnCount ||
               tableStyle?.borderStyle != BorderStyle.Hidden)) {
         final oldValue = (columnBorderWidths[columnIndex + columnSpan] == 0)
-            ? "0 ->"
-            : "already";
+            ? '0 ->'
+            : 'already';
 
         columnBorderWidths[columnIndex + columnSpan] = 1;
       }
       if ((rowIndex == 0 && tableStyle?.border == true ||
               canonicalStyle?.borderTop == true) &&
           (rowIndex > 0 || tableStyle?.borderStyle != BorderStyle.Hidden)) {
-        final oldValue = (rowBorderHeights[rowIndex] == 0) ? "0 ->" : "already";
+        final oldValue = (rowBorderHeights[rowIndex] == 0) ? '0 ->' : 'already';
 
         rowBorderHeights[rowIndex] = 1;
       }
@@ -76,7 +76,7 @@ extension Render on Table {
           (rowIndex + rowSpan < rowCount ||
               tableStyle?.borderStyle != BorderStyle.Hidden)) {
         final oldValue =
-            (rowBorderHeights[rowIndex + rowSpan] == 0) ? "0 ->" : "already";
+            (rowBorderHeights[rowIndex + rowSpan] == 0) ? '0 ->' : 'already';
 
         rowBorderHeights[rowIndex + rowSpan] = 1;
       }

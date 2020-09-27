@@ -1,7 +1,7 @@
 import 'package:characters/characters.dart';
 
 extension Visual on String {
-  static final ansiColorEscape = RegExp("\u001B\\[\\d+(\;\d+)*m");
+  static final ansiColorEscape = RegExp('\u001B\\[\\d+(\;\d+)*m');
 
   int visualIndex(int index) {
     var currentIndex = 0;

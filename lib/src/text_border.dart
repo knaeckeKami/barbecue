@@ -3,7 +3,7 @@ class TextBorder {
 
   TextBorder(String characters)
       : assert(characters.length == 16,
-            '"Border string must contain exactly 16 characters'),
+            'Border string must contain exactly 16 characters'),
         characters = characters,
         empty = characters[0],
         down = characters[1],
@@ -57,7 +57,7 @@ class TextBorder {
         (down ? 1 : 0) | (up ? 2 : 0) | (right ? 4 : 0) | (left ? 8 : 0)];
   }
 
-  static final DEFAULT = TextBorder(" ╷╵│╶┌└├╴┐┘┤─┬┴┼");
-  static final ROUNDED = TextBorder(" ╷╵│╶╭╰├╴╮╯┤─┬┴┼");
-  static final ASCII = TextBorder("   | +++ +++-+++");
+  static final DEFAULT = TextBorder(' ╷╵│╶┌└├╴┐┘┤─┬┴┼');
+  static final ROUNDED = TextBorder(' ╷╵│╶╭╰├╴╮╯┤─┬┴┼');
+  static final ASCII = TextBorder('   | +++ +++-+++');
 }

@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 import '../test/test_table_string_helper.dart';
 
 void main() {
-  test("table can draw border and cell border", () {
+  test('table can draw border and cell border', () {
     final table = Table(
       tableStyle: TableStyle(
         border: true,
@@ -18,20 +18,20 @@ void main() {
       body: TableSection(
         rows: [
           Row(cells: [
-            Cell("1"),
-            Cell("2"),
-            Cell("3"),
+            Cell('1'),
+            Cell('2'),
+            Cell('3'),
           ]),
           Row(cells: [
-            Cell("4"),
-            Cell("5"),
-            Cell("6"),
+            Cell('4'),
+            Cell('5'),
+            Cell('6'),
           ]),
           Row(
             cells: [
-              Cell("7"),
-              Cell("8"),
-              Cell("9"),
+              Cell('7'),
+              Cell('8'),
+              Cell('9'),
             ],
           ),
         ],
@@ -51,7 +51,7 @@ void main() {
             .trimEveryLine());
   });
 
-  test("table can draw border and cell border with different lengths", () {
+  test('table can draw border and cell border with different lengths', () {
     final table = Table(
       tableStyle: TableStyle(
         border: true,
@@ -64,20 +64,20 @@ void main() {
       body: TableSection(
         rows: [
           Row(cells: [
-            Cell("1A"),
-            Cell("2"),
-            Cell("3"),
+            Cell('1A'),
+            Cell('2'),
+            Cell('3'),
           ]),
           Row(cells: [
-            Cell("4"),
-            Cell("5"),
-            Cell("6"),
+            Cell('4'),
+            Cell('5'),
+            Cell('6'),
           ]),
           Row(
             cells: [
-              Cell("7"),
-              Cell("8"),
-              Cell("999"),
+              Cell('7'),
+              Cell('8'),
+              Cell('999'),
             ],
           ),
         ],
@@ -97,7 +97,7 @@ void main() {
             .trimEveryLine());
   });
 
-  test("draw table without border and no cell border", () {
+  test('draw table without border and no cell border', () {
     final table = Table(
       tableStyle: TableStyle(
         border: false,
@@ -110,20 +110,20 @@ void main() {
       body: TableSection(
         rows: [
           Row(cells: [
-            Cell("1"),
-            Cell("2"),
-            Cell("3"),
+            Cell('1'),
+            Cell('2'),
+            Cell('3'),
           ]),
           Row(cells: [
-            Cell("4"),
-            Cell("5"),
-            Cell("6"),
+            Cell('4'),
+            Cell('5'),
+            Cell('6'),
           ]),
           Row(
             cells: [
-              Cell("7"),
-              Cell("8"),
-              Cell("9"),
+              Cell('7'),
+              Cell('8'),
+              Cell('9'),
             ],
           ),
         ],
@@ -139,7 +139,7 @@ void main() {
             .trimEveryLine());
   });
 
-  test("draw table with border and no cell border", () {
+  test('draw table with border and no cell border', () {
     final table2 = Table(
       tableStyle: TableStyle(
         border: true,
@@ -152,20 +152,20 @@ void main() {
       body: TableSection(
         rows: [
           Row(cells: [
-            Cell("1"),
-            Cell("2"),
-            Cell("3"),
+            Cell('1'),
+            Cell('2'),
+            Cell('3'),
           ]),
           Row(cells: [
-            Cell("4"),
-            Cell("5"),
-            Cell("6"),
+            Cell('4'),
+            Cell('5'),
+            Cell('6'),
           ]),
           Row(
             cells: [
-              Cell("7"),
-              Cell("8"),
-              Cell("9"),
+              Cell('7'),
+              Cell('8'),
+              Cell('9'),
             ],
           ),
         ],
@@ -185,7 +185,7 @@ void main() {
             .trimEveryLine());
   });
 
-  test("table can draw ascii border", () {
+  test('table can draw ascii border', () {
     final table = Table(
       tableStyle: TableStyle(
         border: true,
@@ -198,20 +198,20 @@ void main() {
       body: TableSection(
         rows: [
           Row(cells: [
-            Cell("1"),
-            Cell("2"),
-            Cell("3"),
+            Cell('1'),
+            Cell('2'),
+            Cell('3'),
           ]),
           Row(cells: [
-            Cell("4"),
-            Cell("5"),
-            Cell("6"),
+            Cell('4'),
+            Cell('5'),
+            Cell('6'),
           ]),
           Row(
             cells: [
-              Cell("7"),
-              Cell("8"),
-              Cell("9"),
+              Cell('7'),
+              Cell('8'),
+              Cell('9'),
             ],
           ),
         ],
@@ -231,7 +231,7 @@ void main() {
             .trimEveryLine());
   });
 
-  test("table can draw rounded border", () {
+  test('table can draw rounded border', () {
     final table = Table(
       tableStyle: TableStyle(
         border: true,
@@ -244,20 +244,20 @@ void main() {
       body: TableSection(
         rows: [
           Row(cells: [
-            Cell("1"),
-            Cell("2"),
-            Cell("3"),
+            Cell('1'),
+            Cell('2'),
+            Cell('3'),
           ]),
           Row(cells: [
-            Cell("4"),
-            Cell("5"),
-            Cell("6"),
+            Cell('4'),
+            Cell('5'),
+            Cell('6'),
           ]),
           Row(
             cells: [
-              Cell("7"),
-              Cell("8"),
-              Cell("9"),
+              Cell('7'),
+              Cell('8'),
+              Cell('9'),
             ],
           ),
         ],
@@ -277,7 +277,7 @@ void main() {
             .trimEveryLine());
   });
 
-  test("can draw table with header and footer with middle border", () {
+  test('can draw table with header and footer with middle border', () {
     final table = Table(
         tableStyle: TableStyle(
           border: true,
@@ -288,23 +288,23 @@ void main() {
             ),
             rows: [
               Row(cells: [
-                Cell("1", style: CellStyle(borderRight: true)),
-                Cell("2"),
-                Cell("3"),
+                Cell('1', style: CellStyle(borderRight: true)),
+                Cell('2'),
+                Cell('3'),
               ])
             ]),
         body: TableSection(
           rows: [
             Row(cells: [
-              Cell("4", style: CellStyle(borderRight: true)),
-              Cell("5"),
-              Cell("6"),
+              Cell('4', style: CellStyle(borderRight: true)),
+              Cell('5'),
+              Cell('6'),
             ]),
             Row(
               cells: [
-                Cell("7", style: CellStyle(borderRight: true)),
-                Cell("8"),
-                Cell("9"),
+                Cell('7', style: CellStyle(borderRight: true)),
+                Cell('8'),
+                Cell('9'),
               ],
             ),
           ],
@@ -313,9 +313,9 @@ void main() {
           Row(
             cellStyle: CellStyle(borderTop: true),
             cells: [
-              Cell("A", style: CellStyle(borderRight: true)),
-              Cell("B"),
-              Cell("C"),
+              Cell('A', style: CellStyle(borderRight: true)),
+              Cell('B'),
+              Cell('C'),
             ],
           ),
         ]));

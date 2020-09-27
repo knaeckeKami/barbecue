@@ -35,7 +35,7 @@ class Table {
     for (final section
         in [header, body, footer].where((element) => element != null)) {
       final sectionStyle = cellStyle + section.cellStyle;
-      print("make table with ${section.rows.length} rows");
+      print('make table with ${section.rows.length} rows');
       for (final row in section.rows) {
         final rowStyle = sectionStyle + row.cellStyle;
         final cellRow = <PositionedCell>[];
@@ -61,7 +61,7 @@ class Table {
 
           final rowSpan = cell.rowSpan;
           assert(rowIndex + rowSpan <= rowCount,
-              "Cell $rawColumnIndex in row $rowIndex has rowSpan=$rowSpan but table rowCount=$rowCount");
+              'Cell $rawColumnIndex in row $rowIndex has rowSpan=$rowSpan but table rowCount=$rowCount');
 
           final rowSpanCarry = rowSpan - 1;
           var count = cell.columnSpan;
