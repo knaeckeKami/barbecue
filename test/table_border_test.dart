@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:picnic/picnic.dart';
+import 'package:barbecue/barbecue.dart';
 import 'package:test/test.dart';
 import '../test/test_table_string_helper.dart';
 

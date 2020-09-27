@@ -1,8 +1,8 @@
-import 'package:picnic/src/model.dart';
-import 'package:picnic/src/table.dart';
-import 'package:picnic/src/text_border.dart';
-import 'package:picnic/src/text_layout.dart';
-import 'package:picnic/src/text_surface.dart';
+import 'package:barbecue/src/model.dart';
+import 'package:barbecue/src/table.dart';
+import 'package:barbecue/src/text_border.dart';
+import 'package:barbecue/src/text_layout.dart';
+import 'package:barbecue/src/text_surface.dart';
 
 TextLayout _simpleLayoutFactory(PositionedCell cell) => SimpleLayout(cell);
 

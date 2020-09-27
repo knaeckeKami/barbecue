@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:picnic/src/int_country.dart';
-import 'package:picnic/src/model.dart';
+import 'package:barbecue/src/int_country.dart';
+import 'package:barbecue/src/model.dart';
 
 class Table {
   final TableSection header;

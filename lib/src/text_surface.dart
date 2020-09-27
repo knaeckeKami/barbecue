@@ -1,5 +1,5 @@
 import 'package:characters/characters.dart';
-import 'package:picnic/src/text.dart';
+import 'package:barbecue/src/text.dart';
 
 abstract class TextCanvas {
   final int width;

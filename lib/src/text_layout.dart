@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:characters/characters.dart';
-import 'package:picnic/src/model.dart';
-import 'package:picnic/src/text_surface.dart';
+import 'package:barbecue/src/model.dart';
+import 'package:barbecue/src/text_surface.dart';
 
 abstract class TextLayout {
   int measureWidth();
