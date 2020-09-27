@@ -5,10 +5,10 @@ abstract class TextCanvas {
   final int width;
   final int height;
 
-
-
-  TextCanvas(this.width,
-      this.height,);
+  TextCanvas(
+    this.width,
+    this.height,
+  );
 
   void write(int row, int column, String string);
 
@@ -24,31 +24,26 @@ abstract class TextCanvas {
 
   TextCanvas clip(int left, int right, int top, int bottom) {
     return ClippedTextCanvas(
-        canvas: this,
-        left: left,
-        right: right,
-        top: top,
-        bottom: bottom);
+        canvas: this, left: left, right: right, top: top, bottom: bottom);
   }
 
   void setCharacter(int row, int column, Characters unicodeChar);
 }
 
-
 class TextSurface extends TextCanvas {
   final List<String> rowBuilders;
 
   TextSurface(int width, int height)
-      :  rowBuilders =
-  List.filled(height, [for (int i = 0; i < width; i++) ' '].join('')),
+      : rowBuilders =
+            List.filled(height, [for (int i = 0; i < width; i++) ' '].join('')),
         super(width, height);
 
   @override
   void setCharacter(int row, int column, Characters unicodeChar) {
-
     final writeIndex = rowBuilders[row].visualIndex(column);
 
-    rowBuilders[row] = rowBuilders[row].replaceRange(writeIndex, writeIndex+1, unicodeChar.string);
+    rowBuilders[row] = rowBuilders[row]
+        .replaceRange(writeIndex, writeIndex + 1, unicodeChar.string);
   }
 
   void write(int row, int column, String string) {
@@ -57,10 +52,10 @@ class TextSurface extends TextCanvas {
       final rowBuilder = rowBuilders[row + lineIndex];
       final writeStartIndex = rowBuilder.visualIndex(column);
       final writeEndIndex =
-      rowBuilder.visualIndex(column + line.visualCodePointCount);
+          rowBuilder.visualIndex(column + line.visualCodePointCount);
 
       final newRow =
-      rowBuilder.replaceRange(writeStartIndex, writeEndIndex, line);
+          rowBuilder.replaceRange(writeStartIndex, writeEndIndex, line);
       rowBuilders[row + lineIndex] = newRow;
       lineIndex++;
     }
@@ -68,10 +63,9 @@ class TextSurface extends TextCanvas {
 
   @override
   String toString() {
-
     final buffer = StringBuffer();
-    var index =0;
-    for(final rowBuilder in rowBuilders) {
+    var index = 0;
+    for (final rowBuilder in rowBuilders) {
       if (index > 0) {
         buffer.writeln();
       }
@@ -102,7 +96,6 @@ class ClippedTextCanvas extends TextCanvas {
 
   @override
   int get height => bottom - top;
-
 
   @override
   void setCharacter(int row, int column, Characters unicodeChar) {

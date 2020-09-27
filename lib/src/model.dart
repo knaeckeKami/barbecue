@@ -101,8 +101,7 @@ class Cell {
   final int rowSpan;
   final CellStyle style;
 
-  const Cell(this.content, {this.columnSpan=1, this.rowSpan =1, this.style
-  });
+  const Cell(this.content, {this.columnSpan = 1, this.rowSpan = 1, this.style});
 
   @override
   bool operator ==(Object other) =>

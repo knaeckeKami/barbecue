@@ -26,10 +26,10 @@ class SimpleLayout implements TextLayout {
     return leftPadding +
         (cell.canonicalStyle?.paddingRight ?? 0) +
         cell.cell.content.split('\n').fold<int>(
-          0,
+              0,
               (previousValue, element) =>
-              max(previousValue, Characters(element).length),
-        );
+                  max(previousValue, Characters(element).length),
+            );
   }
 
   @override
@@ -37,9 +37,7 @@ class SimpleLayout implements TextLayout {
     return 1 +
         topPadding +
         (cell.canonicalStyle?.paddingBottom ?? 0) +
-        '\n'
-            .allMatches(cell.cell.content)
-            .length;
+        '\n'.allMatches(cell.cell.content).length;
   }
 
   @override
@@ -87,7 +85,6 @@ class SimpleLayout implements TextLayout {
             return canvas.width - lineWidth + leftPadding;
         }
       }();
-
 
       canvas.write(top + index, left, line);
       index++;

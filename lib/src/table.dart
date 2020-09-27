@@ -95,15 +95,13 @@ class Table {
   PositionedCell get(int row, int column) => _cellTable[row]?.elementAt(column);
 
   PositionedCell getOrNull(int row, int column) {
-    if(row < 0 || column < 0 || row >= _cellTable.length){
+    if (row < 0 || column < 0 || row >= _cellTable.length) {
       return null;
     }
     final cols = _cellTable[row];
-    if(column >= cols.length){
+    if (column >= cols.length) {
       return null;
     }
     return cols[column];
-
   }
-
 }

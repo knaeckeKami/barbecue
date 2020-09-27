@@ -6,24 +6,24 @@ void main() {
   test('can align multiple lines in a single cell individually', () {
     final table = Table(
         body: TableSection(rows: [
-          Row(cells: [
-            for (final alignment in [
-              TextAlignment.TopLeft,
-              TextAlignment.TopCenter,
-              TextAlignment.TopRight
-            ])
-              Cell(
-                '''
+      Row(cells: [
+        for (final alignment in [
+          TextAlignment.TopLeft,
+          TextAlignment.TopCenter,
+          TextAlignment.TopRight
+        ])
+          Cell(
+            '''
                   X
                   XXX
                   XXXXX
                   XXX
                   X'''
-                    .trimEveryLine(),
-                style: CellStyle(alignment: alignment),
-              ),
-          ])
-        ]));
+                .trimEveryLine(),
+            style: CellStyle(alignment: alignment),
+          ),
+      ])
+    ]));
 
     expect(
       table.render(),
