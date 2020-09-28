@@ -1,6 +1,6 @@
 name: barbecue
 description: Render text tables for your command line applications. Use padding, spans, custom borders, ANSI colors and more!
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/knaeckeKami/barbecue
 
 environment:
