@@ -1,5 +1,6 @@
 import 'package:barbecue/src/int_count.dart';
 import 'package:barbecue/src/model.dart';
+import 'package:meta/meta.dart';
 
 class Table {
   final TableSection header;
@@ -17,11 +18,13 @@ class Table {
 
   Table({
     this.header,
-    this.body,
+    @required this.body,
     this.footer,
     this.cellStyle = const CellStyle(),
     this.tableStyle,
-  }) : rowCount = (header?.rows?.length ?? 0) +
+  }) :
+        assert(body != null, "the body of the table must not be null"),
+        rowCount = (header?.rows?.length ?? 0) +
             body.rows.length +
             (footer?.rows?.length ?? 0) {
     final rowSpanCarries = IntCounts();
