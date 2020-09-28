@@ -150,4 +150,72 @@ void main() {
     expect(table.getOrNull(1, 2), isNull);
     expect(table.getOrNull(1, 3), isNotNull);
   });
+
+  test('more complex row span', () {
+    final table = Table(
+      cellStyle: CellStyle(
+          borderBottom: true,
+          borderRight: true,
+          borderLeft: true,
+          borderTop: true,
+          alignment: TextAlignment.TopLeft),
+      body: TableSection(
+        rows: [
+          Row(
+            cells: [
+              Cell("Real Planets",
+                  rowSpan: 8,
+                  style: CellStyle(alignment: TextAlignment.MiddleCenter)),
+              Cell("Mercury")
+            ],
+          ),
+          Row(
+            cells: [Cell("Venus")],
+          ),
+          Row(
+            cells: [Cell("Earth")],
+          ),
+          Row(
+            cells: [Cell("Mars")],
+          ),
+          Row(
+            cells: [Cell("Jupiter")],
+          ),
+          Row(
+            cells: [Cell("Saturn")],
+          ),
+          Row(
+            cells: [Cell("Uranus")],
+          ),
+          Row(
+            cells: [Cell("Neptune")],
+          ),
+          Row(
+            cells: [Cell("Very Fake Planets", rowSpan: 1), Cell("Pluto")],
+          ),
+        ],
+      ),
+    ).render(border: TextBorder.ASCII);
+
+    expect(table, '''
++-----------------+-------+
+|                 |Mercury|
+|                 +-------+
+|                 |Venus  |
+|                 +-------+
+|                 |Earth  |
+|                 +-------+
+|                 |Mars   |
+|  Real Planets   +-------+
+|                 |Jupiter|
+|                 +-------+
+|                 |Saturn |
+|                 +-------+
+|                 |Uranus |
+|                 +-------+
+|                 |Neptune|
++-----------------+-------+
+|Very Fake Planets|Pluto  |
++-----------------+-------+''');
+  });
 }
