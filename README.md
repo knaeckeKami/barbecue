@@ -142,3 +142,8 @@ returns
 
 ```
 
+
+## TODO
+
+☐ Support custom borders with arbitrary unicode characters (not just characters that can be stored in a single utf 16 codepoint) 
+☐ Support emoji and other wide characters (they currently mess up the layout - a fully monospaced font is assumed, however most fonts render emojis as 2 characters wide) 
