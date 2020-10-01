@@ -142,8 +142,47 @@ returns
 
 ```
 
+### ANSI colors
+
+
+```dart
+  final strings = ["look", "at", "all", "these", "colors"];
+  var i = 0;
+  print(Table(
+    tableStyle: TableStyle(border: true),
+    body: TableSection(
+        cellStyle: CellStyle(
+          borderRight: true,
+        ),
+        rows: [
+          Row(
+            cells: [
+              for (final pen in [
+                AnsiPen()
+                  ..red(bold: true),
+                AnsiPen()
+                  ..green(bold: true),
+                AnsiPen()..blue(),
+                AnsiPen()
+                  ..black()
+                  ..white(bg: true),
+                AnsiPen()..xterm(190)
+              ])
+                Cell(pen(strings[i++]))
+            ],
+          ),
+        ]),
+  ).render());
+
+
+```
+prints 
+
+![image](https://imgur.com/a/NkpmiWM)
+
 
 ## TODO
 
 ☐ Support custom borders with arbitrary unicode characters (not just characters that can be stored in a single utf 16 codepoint) 
+
 ☐ Support emoji and other wide characters (they currently mess up the layout - a fully monospaced font is assumed, however most fonts render emojis as 2 characters wide) 
