@@ -178,7 +178,7 @@ returns
 ```
 prints 
 
-![image](https://imgur.com/a/NkpmiWM)
+![image](https://i.imgur.com/1HYQdbV.png)
 
 
 ## TODO
