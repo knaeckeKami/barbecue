@@ -14,10 +14,8 @@ void main(List<String> arguments) {
           Row(
             cells: [
               for (final pen in [
-                AnsiPen()
-                  ..red(bold: true),
-                AnsiPen()
-                  ..green(bold: true),
+                AnsiPen()..red(bold: true),
+                AnsiPen()..green(bold: true),
                 AnsiPen()..blue(),
                 AnsiPen()
                   ..black()
