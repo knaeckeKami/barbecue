@@ -22,7 +22,7 @@ class Table {
     this.footer,
     this.cellStyle = const CellStyle(),
     this.tableStyle,
-  })  : assert(body != null, "the body of the table must not be null"),
+  })  : assert(body != null, 'the body of the table must not be null'),
         rowCount = (header?.rows?.length ?? 0) +
             body.rows.length +
             (footer?.rows?.length ?? 0) {
