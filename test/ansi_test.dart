@@ -13,7 +13,7 @@ void main() {
   String green(String orig) =>
       '${ansiEscape}38;5;${greenXterm}m$orig$ansiDefault';
 
-  test("handles ansi codes with padding", () {
+  test('handles ansi codes with padding', () {
     final table = Table(
       tableStyle: TableStyle(border: true),
       cellStyle: CellStyle(paddingLeft: 2, paddingRight: 2),
@@ -22,7 +22,7 @@ void main() {
           Row(
             cells: [
               Cell(
-                green("test"),
+                green('test'),
               ),
             ],
           )
@@ -38,26 +38,26 @@ void main() {
 └────────┘''');
   });
 
-  test("handles ansi codes with columnspan and middle alignment", () {
+  test('handles ansi codes with columnspan and middle alignment', () {
     final table = Table(
       body: TableSection(
         rows: [
           Row(
             cells: [
-              Cell(green("test"),
+              Cell(green('test'),
                   columnSpan: 3,
                   style: CellStyle(alignment: TextAlignment.MiddleCenter)),
             ],
           ),
           Row(cells: [
             Cell(
-              "1111",
+              '1111',
             ),
             Cell(
-              "2222",
+              '2222',
             ),
             Cell(
-              "3333",
+              '3333',
             )
           ])
         ],
@@ -71,26 +71,26 @@ void main() {
 111122223333''');
   });
 
-  test("handles ansi codes with columnspan and left alignment", () {
+  test('handles ansi codes with columnspan and left alignment', () {
     final table = Table(
       body: TableSection(
         rows: [
           Row(
             cells: [
-              Cell(green("test"),
+              Cell(green('test'),
                   columnSpan: 3,
                   style: CellStyle(alignment: TextAlignment.MiddleLeft)),
             ],
           ),
           Row(cells: [
             Cell(
-              "1111",
+              '1111',
             ),
             Cell(
-              "2222",
+              '2222',
             ),
             Cell(
-              "3333",
+              '3333',
             )
           ])
         ],
@@ -106,26 +106,26 @@ void main() {
 111122223333''');
   });
 
-  test("handles ansi codes with columnspan and right alignment", () {
+  test('handles ansi codes with columnspan and right alignment', () {
     final table = Table(
       body: TableSection(
         rows: [
           Row(
             cells: [
-              Cell(green("test"),
+              Cell(green('test'),
                   columnSpan: 3,
                   style: CellStyle(alignment: TextAlignment.MiddleRight)),
             ],
           ),
           Row(cells: [
             Cell(
-              "1111",
+              '1111',
             ),
             Cell(
-              "2222",
+              '2222',
             ),
             Cell(
-              "3333",
+              '3333',
             )
           ])
         ],

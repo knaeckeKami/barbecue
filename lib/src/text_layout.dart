@@ -1,6 +1,4 @@
 import 'dart:math';
-
-import 'package:characters/characters.dart';
 import 'package:barbecue/src/model.dart';
 import 'package:barbecue/src/text_surface.dart';
 import 'package:barbecue/src/text.dart';
