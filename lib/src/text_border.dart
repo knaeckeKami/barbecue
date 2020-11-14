@@ -1,8 +1,10 @@
+import 'package:characters/characters.dart';
+
 class TextBorder {
   final String characters;
 
   TextBorder(String characters)
-      : assert(characters.length == 16,
+      : assert(Characters(characters).length == 16,
             'Border string must contain exactly 16 characters'),
         characters = characters,
         empty = characters[0],
