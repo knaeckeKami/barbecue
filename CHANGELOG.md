@@ -1,3 +1,7 @@
+## 0.2.0
+
+- Fix Bug when using ANSI colors and centered Text
+
 ## 0.1.0
 
 - More tests, more examples
