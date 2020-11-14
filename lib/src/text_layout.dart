@@ -69,7 +69,7 @@ class SimpleLayout implements TextLayout {
     for (final line in cell.cell.content.split('\n')) {
       final lineWidth = leftPadding +
           (cell.canonicalStyle?.paddingRight ?? 0) +
-          Characters(line).length;
+          line.visualCodePointCount;
       final left = () {
         switch (alignment) {
           case TextAlignment.TopLeft:
