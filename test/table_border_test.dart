@@ -326,4 +326,52 @@ void main() {
 │A│BC│
 └─┴──┘''');
   });
+
+  test('table can draw custom border', () {
+    final table = Table(
+      tableStyle: TableStyle(
+        border: true,
+      ),
+      cellStyle: CellStyle(
+          borderBottom: true,
+          borderLeft: true,
+          borderRight: true,
+          borderTop: true),
+      body: TableSection(
+        rows: [
+          Row(cells: [
+            Cell('1'),
+            Cell('2'),
+            Cell('3'),
+          ]),
+          Row(cells: [
+            Cell('4'),
+            Cell('5'),
+            Cell('6'),
+          ]),
+          Row(
+            cells: [
+              Cell('7'),
+              Cell('8'),
+              Cell('9'),
+            ],
+          ),
+        ],
+      ),
+    );
+
+    final tableString = table.render(border: TextBorder(' ╹╹┃╺┏┗┣╸┓┛┫━┳┻╋'));
+
+    expect(
+        tableString,
+        '''
+┏━┳━┳━┓
+┃1┃2┃3┃
+┣━╋━╋━┫
+┃4┃5┃6┃
+┣━╋━╋━┫
+┃7┃8┃9┃
+┗━┻━┻━┛'''
+            .trimEveryLine());
+  });
 }

@@ -1,3 +1,8 @@
+## 0.3.0-alpha1
+
+- Emoji/Wide Character support
+- Support custom borders with characters that don't fit in a single UTF-16 code unit
+
 ## 0.2.0
 
 - Fix Bug when using ANSI colors and centered Text

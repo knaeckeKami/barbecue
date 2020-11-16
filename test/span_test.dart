@@ -163,35 +163,35 @@ void main() {
         rows: [
           Row(
             cells: [
-              Cell("Real Planets",
+              Cell('Real Planets',
                   rowSpan: 8,
                   style: CellStyle(alignment: TextAlignment.MiddleCenter)),
-              Cell("Mercury")
+              Cell('Mercury')
             ],
           ),
           Row(
-            cells: [Cell("Venus")],
+            cells: [Cell('Venus')],
           ),
           Row(
-            cells: [Cell("Earth")],
+            cells: [Cell('Earth')],
           ),
           Row(
-            cells: [Cell("Mars")],
+            cells: [Cell('Mars')],
           ),
           Row(
-            cells: [Cell("Jupiter")],
+            cells: [Cell('Jupiter')],
           ),
           Row(
-            cells: [Cell("Saturn")],
+            cells: [Cell('Saturn')],
           ),
           Row(
-            cells: [Cell("Uranus")],
+            cells: [Cell('Uranus')],
           ),
           Row(
-            cells: [Cell("Neptune")],
+            cells: [Cell('Neptune')],
           ),
           Row(
-            cells: [Cell("Very Fake Planets", rowSpan: 1), Cell("Pluto")],
+            cells: [Cell('Very Fake Planets', rowSpan: 1), Cell('Pluto')],
           ),
         ],
       ),
