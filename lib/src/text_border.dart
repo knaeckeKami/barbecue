@@ -1,28 +1,32 @@
 import 'package:characters/characters.dart';
 
 class TextBorder {
-  final String characters;
+  final Characters characters;
 
-  TextBorder(String characters)
-      : assert(Characters(characters).length == 16,
-            'Border string must contain exactly 16 characters'),
+  factory TextBorder(String string) {
+    return TextBorder.fromCharacters(Characters(string));
+  }
+
+  TextBorder.fromCharacters(Characters characters)
+      : assert(characters.length == 16,
+            'Border string must contain exactly 16 characters, but got ${characters.length}'),
         characters = characters,
-        empty = characters[0],
-        down = characters[1],
-        up = characters[2],
-        vertical = characters[3],
-        right = characters[4],
-        downAndRight = characters[5],
-        upAndRight = characters[6],
-        verticalAndRight = characters[7],
-        left = characters[8],
-        downAndLeft = characters[9],
-        upAndLeft = characters[10],
-        verticalAndLeft = characters[11],
-        horizontal = characters[12],
-        downAndHorizontal = characters[13],
-        upAndHorizontal = characters[14],
-        verticalAndHorizontal = characters[15];
+        empty = characters.elementAt(0),
+        down = characters.elementAt(1),
+        up = characters.elementAt(2),
+        vertical = characters.elementAt(3),
+        right = characters.elementAt(4),
+        downAndRight = characters.elementAt(5),
+        upAndRight = characters.elementAt(6),
+        verticalAndRight = characters.elementAt(7),
+        left = characters.elementAt(8),
+        downAndLeft = characters.elementAt(9),
+        upAndLeft = characters.elementAt(10),
+        verticalAndLeft = characters.elementAt(11),
+        horizontal = characters.elementAt(12),
+        downAndHorizontal = characters.elementAt(13),
+        upAndHorizontal = characters.elementAt(14),
+        verticalAndHorizontal = characters.elementAt(15);
 
   final String empty;
   final String down;
@@ -55,11 +59,16 @@ class TextBorder {
     bool right = false,
     bool left = false,
   }) {
-    return characters[
-        (down ? 1 : 0) | (up ? 2 : 0) | (right ? 4 : 0) | (left ? 8 : 0)];
+    return characters.elementAt(
+      (down ? 1 : 0) | (up ? 2 : 0) | (right ? 4 : 0) | (left ? 8 : 0),
+    );
   }
 
   static final DEFAULT = TextBorder(' ╷╵│╶┌└├╴┐┘┤─┬┴┼');
+
   static final ROUNDED = TextBorder(' ╷╵│╶╭╰├╴╮╯┤─┬┴┼');
+
   static final ASCII = TextBorder('   | +++ +++-+++');
+
+  static final HEAVY = TextBorder(' ╹╹┃╺┏┗┣╸┓┛┫━┳┻╋');
 }
