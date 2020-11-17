@@ -1,8 +1,17 @@
 import 'package:characters/characters.dart';
 
+/// represents the border of a table
 class TextBorder {
   final Characters characters;
 
+  /// create a new textborder from the given string
+  /// the string must have a visual length of 16 (as of the characters package)
+  /// these 16 characters will be used for constructing the border.
+  /// the positions of the character defines its usage.
+  /// the positions are in that order: empty, down, up, vertical, right,
+  /// downAndRight, upAndRight, verticalAndRight, left, downAndLeft, upAndLeft,
+  /// verticalAndLeft, horizontal, downAndHorizontal, upAndHorizontal and
+  /// verticalAndHorizontal.
   factory TextBorder(String string) {
     return TextBorder.fromCharacters(Characters(string));
   }

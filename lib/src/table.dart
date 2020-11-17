@@ -1,6 +1,12 @@
 import 'package:barbecue/src/int_count.dart';
 import 'package:barbecue/src/model.dart';
 import 'package:meta/meta.dart';
+import 'package:barbecue/src/text_border.dart';
+import 'package:barbecue/src/text_layout.dart';
+import 'package:barbecue/src/text_surface.dart';
+
+part 'text_render.dart';
+
 
 class Table {
   final TableSection header;
@@ -9,10 +15,10 @@ class Table {
   final CellStyle cellStyle;
   final TableStyle tableStyle;
 
-  final int rowCount;
+  final int _rowCount;
 
-  int columnCount;
-  List<PositionedCell> positionedCells;
+  int _columnCount;
+  List<PositionedCell> _positionedCells;
 
   List<List<PositionedCell>> _cellTable;
 
@@ -23,7 +29,7 @@ class Table {
     this.cellStyle = const CellStyle(),
     this.tableStyle,
   })  : assert(body != null, 'the body of the table must not be null'),
-        rowCount = (header?.rows?.length ?? 0) +
+        _rowCount = (header?.rows?.length ?? 0) +
             body.rows.length +
             (footer?.rows?.length ?? 0) {
     final rowSpanCarries = IntCounts();
@@ -59,8 +65,8 @@ class Table {
           positionedCells.add(positionedCell);
 
           final rowSpan = cell.rowSpan;
-          assert(rowIndex + rowSpan <= rowCount,
-              'Cell $rawColumnIndex in row $rowIndex has rowSpan=$rowSpan but table rowCount=$rowCount');
+          assert(rowIndex + rowSpan <= _rowCount,
+              'Cell $rawColumnIndex in row $rowIndex has rowSpan=$rowSpan but table rowCount=$_rowCount');
 
           final rowSpanCarry = rowSpan - 1;
           var count = cell.columnSpan;
@@ -86,8 +92,8 @@ class Table {
         rowIndex++;
       }
     }
-    columnCount = rowSpanCarries.size;
-    this.positionedCells = positionedCells;
+    _columnCount = rowSpanCarries.size;
+    this._positionedCells = positionedCells;
     this._cellTable = _cellTable;
   }
 
@@ -112,8 +118,8 @@ class Table {
           footer == other.footer &&
           cellStyle == other.cellStyle &&
           tableStyle == other.tableStyle &&
-          rowCount == other.rowCount &&
-          columnCount == other.columnCount;
+          _rowCount == other._rowCount &&
+          _columnCount == other._columnCount;
 
   @override
   int get hashCode =>
@@ -122,11 +128,11 @@ class Table {
       footer.hashCode ^
       cellStyle.hashCode ^
       tableStyle.hashCode ^
-      rowCount.hashCode ^
-      columnCount.hashCode;
+      _rowCount.hashCode ^
+      _columnCount.hashCode;
 
   @override
   String toString() {
-    return 'Table{header: $header, body: $body, footer: $footer, cellStyle: $cellStyle, tableStyle: $tableStyle, rowCount: $rowCount, columnCount: $columnCount}';
+    return 'Table{header: $header, body: $body, footer: $footer, cellStyle: $cellStyle, tableStyle: $tableStyle, rowCount: $_rowCount, columnCount: $_columnCount}';
   }
 }

@@ -95,8 +95,8 @@ class SimpleLayout implements TextLayout {
 }
 
 @experimental
-class EmojiAwareLayout extends SimpleLayout {
-  EmojiAwareLayout(PositionedCell cell) : super(cell);
+class WideCharacterAwareLayout extends SimpleLayout {
+  WideCharacterAwareLayout(PositionedCell cell) : super(cell);
 
   static const zeroWidthJoiner = '\u200D';
 
@@ -167,7 +167,3 @@ class EmojiAwareLayout extends SimpleLayout {
   }
 }
 
-extension EmojiCount on String {
-  int get emojiCount =>
-      Characters(this).where((char) => isFullWidth(char)).length;
-}

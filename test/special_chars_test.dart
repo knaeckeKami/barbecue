@@ -13,6 +13,7 @@ void main() {
           Cell('3'),
           Cell('4'),
           Cell('5'),
+          Cell('6'),
         ],
       ),
       Row(
@@ -22,6 +23,7 @@ void main() {
           Cell('ê'),
           Cell(';;'),
           Cell('Ф'),
+          Cell('𝐇')
         ],
       ),
     ]));
@@ -29,8 +31,8 @@ void main() {
     expect(
         table.render(),
         '''
-          1234 5 
-          ßäê;;Ф'''
+          1234 56 
+          ßäê;;Ф𝐇'''
             .trimEveryLine());
   });
 }

@@ -41,12 +41,12 @@ void main() {
         ]));
 
     final tableString =
-        (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
+        (table.render(layoutFactory: (cell) => WideCharacterAwareLayout(cell)));
 
 
     expect(tableString, '''
 ┌─┬──┬─┐
-│1│🤡${EmojiAwareLayout.zeroWidthJoiner}│1│
+│1│🤡${WideCharacterAwareLayout.zeroWidthJoiner}│1│
 └─┴──┴─┘''');
   });
 
@@ -78,7 +78,7 @@ void main() {
     ]));
 
     final tableString =
-        (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
+        (table.render(layoutFactory: (cell) => WideCharacterAwareLayout(cell)));
 
     expect(tableString, '''
   🤡‍ 
@@ -110,7 +110,7 @@ void main() {
         ]));
 
     final tableString =
-    (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
+    (table.render(layoutFactory: (cell) => WideCharacterAwareLayout(cell)));
 
 
     expect(tableString, '''

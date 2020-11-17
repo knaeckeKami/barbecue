@@ -1,25 +1,29 @@
-import 'package:barbecue/src/model.dart';
-import 'package:barbecue/src/table.dart';
-import 'package:barbecue/src/text_border.dart';
-import 'package:barbecue/src/text_layout.dart';
-import 'package:barbecue/src/text_surface.dart';
+
+
+part of 'table.dart';
 
 TextLayout _simpleLayoutFactory(PositionedCell cell) => SimpleLayout(cell);
 
 extension Render on Table {
+
+  /// render this table to a string using the given [border]
+  /// to use a custom layout algorithm for all or specific cells, set toe
+  /// [layoutFactory] parameter.
+  /// Íf you need support for wide characrters such aus Emojis, use
+  /// the experimental [WideCharacterAwareLayout].
   String render(
       {TextLayout Function(PositionedCell) layoutFactory = _simpleLayoutFactory,
       TextBorder border}) {
     border ??= TextBorder.DEFAULT;
 
-    final layouts = {for (var a in positionedCells) (a).cell: layoutFactory(a)};
+    final layouts = {for (var a in _positionedCells) (a).cell: layoutFactory(a)};
 
-    final columnWidths = List<int>.filled(columnCount, 1);
-    final columnBorderWidths = List<int>.filled(columnCount + 1, 0);
-    final rowHeights = List<int>.filled(rowCount, 1);
-    final rowBorderHeights = List<int>.filled(rowCount + 1, 0);
+    final columnWidths = List<int>.filled(_columnCount, 1);
+    final columnBorderWidths = List<int>.filled(_columnCount + 1, 0);
+    final rowHeights = List<int>.filled(_rowCount, 1);
+    final rowBorderHeights = List<int>.filled(_rowCount + 1, 0);
 
-    for (final positionedCell in positionedCells) {
+    for (final positionedCell in _positionedCells) {
       final rowIndex = positionedCell.rowIndex;
       final columnIndex = positionedCell.columnIndex;
       final cell = positionedCell.cell;
@@ -50,10 +54,10 @@ extension Render on Table {
           (columnIndex > 0 || tableStyle?.borderStyle != BorderStyle.Hidden)) {
         columnBorderWidths[columnIndex] = 1;
       }
-      if ((columnIndex + columnSpan == columnCount &&
+      if ((columnIndex + columnSpan == _columnCount &&
                   tableStyle?.border == true ||
               canonicalStyle?.borderRight == true) &&
-          (columnIndex + columnSpan < columnCount ||
+          (columnIndex + columnSpan < _columnCount ||
               tableStyle?.borderStyle != BorderStyle.Hidden)) {
         columnBorderWidths[columnIndex + columnSpan] = 1;
       }
@@ -62,15 +66,15 @@ extension Render on Table {
           (rowIndex > 0 || tableStyle?.borderStyle != BorderStyle.Hidden)) {
         rowBorderHeights[rowIndex] = 1;
       }
-      if ((rowIndex + rowSpan == rowCount && tableStyle?.border == true ||
+      if ((rowIndex + rowSpan == _rowCount && tableStyle?.border == true ||
               canonicalStyle?.borderBottom == true) &&
-          (rowIndex + rowSpan < rowCount ||
+          (rowIndex + rowSpan < _rowCount ||
               tableStyle?.borderStyle != BorderStyle.Hidden)) {
         rowBorderHeights[rowIndex + rowSpan] = 1;
       }
     }
 
-    final sortedColumnSpanCells = positionedCells
+    final sortedColumnSpanCells = _positionedCells
         .where((it) => it.cell.columnSpan > 1)
         .toList()
           ..sort((a, b) =>
@@ -114,7 +118,7 @@ extension Render on Table {
       }
     }
 
-    final sortedRowSpanCells = positionedCells
+    final sortedRowSpanCells = _positionedCells
         .where((it) => it.cell.rowSpan > 1)
         .toList()
           ..sort((a, b) => Comparable.compare(a.cell.rowSpan, b.cell.rowSpan));
@@ -177,10 +181,10 @@ extension Render on Table {
 
     final surface = TextSurface(tableWidth, tableHeight);
 
-    for (final rowIndex in Iterable<int>.generate(rowCount + 1)) {
+    for (final rowIndex in Iterable<int>.generate(_rowCount + 1)) {
       final rowDrawStartIndex = tableTops[rowIndex];
 
-      for (final columnIndex in Iterable<int>.generate(columnCount + 1)) {
+      for (final columnIndex in Iterable<int>.generate(_columnCount + 1)) {
         final positionedCell = getOrNull(rowIndex, columnIndex);
         final cell = positionedCell?.cell;
 
@@ -214,26 +218,26 @@ extension Render on Table {
                   (previousRowColumnCellCanonicalStyle?.borderRight == true ||
                       previousColumnCellCanonicalStyle?.borderLeft == true ||
                       rowIndex > 0 &&
-                          (columnIndex == 0 || columnIndex == columnCount) &&
+                          (columnIndex == 0 || columnIndex == _columnCount) &&
                           tableStyle?.border == true);
           final cornerLeftBorder =
               !identical(previousRowColumnCell, previousRowCell) &&
                   (previousRowColumnCellCanonicalStyle?.borderBottom == true ||
                       previousRowCellCanonicalStyle?.borderTop == true ||
                       columnIndex > 0 &&
-                          (rowIndex == 0 || rowIndex == rowCount) &&
+                          (rowIndex == 0 || rowIndex == _rowCount) &&
                           tableStyle?.border == true);
           final cornerBottomBorder = !identical(previousRowCell, cell) &&
               (previousRowCellCanonicalStyle?.borderRight == true ||
                   cellCanonicalStyle?.borderLeft == true ||
-                  rowIndex < rowCount &&
-                      (columnIndex == 0 || columnIndex == columnCount) &&
+                  rowIndex < _rowCount &&
+                      (columnIndex == 0 || columnIndex == _columnCount) &&
                       tableStyle?.border == true);
           final cornerRightBorder = !identical(previousColumnCell, cell) &&
               (previousColumnCellCanonicalStyle?.borderBottom == true ||
                   cellCanonicalStyle?.borderTop == true ||
-                  columnIndex < columnCount &&
-                      (rowIndex == 0 || rowIndex == rowCount) &&
+                  columnIndex < _columnCount &&
+                      (rowIndex == 0 || rowIndex == _rowCount) &&
                       tableStyle?.border == true);
           if (cornerTopBorder ||
               cornerLeftBorder ||
@@ -253,7 +257,7 @@ extension Render on Table {
             !identical(previousRowCell, cell) &&
             (previousRowCellCanonicalStyle?.borderRight == true ||
                 cellCanonicalStyle?.borderLeft == true ||
-                (columnIndex == 0 || columnIndex == columnCount) &&
+                (columnIndex == 0 || columnIndex == _columnCount) &&
                     tableStyle?.border == true)) {
           final rowDrawEndIndex =
               tableTops[rowIndex + 1]; // Safe given cell != null.
@@ -272,7 +276,7 @@ extension Render on Table {
             !identical(previousColumnCell, cell) &&
             (previousColumnCellCanonicalStyle?.borderBottom == true ||
                 cellCanonicalStyle?.borderTop == true ||
-                (rowIndex == 0 || rowIndex == rowCount) &&
+                (rowIndex == 0 || rowIndex == _rowCount) &&
                     tableStyle?.border == true)) {
           final columnDrawEndIndex =
               tableLefts[columnIndex + 1]; // Safe given cell != null
@@ -289,7 +293,7 @@ extension Render on Table {
       }
     }
 
-    positionedCells.forEach((positionedCell) {
+    _positionedCells.forEach((positionedCell) {
       final rowIndex = positionedCell.rowIndex;
       final columnIndex = positionedCell.columnIndex;
       final cell = positionedCell.cell;

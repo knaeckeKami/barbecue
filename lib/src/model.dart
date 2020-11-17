@@ -13,6 +13,12 @@ enum TextAlignment {
   BottomRight
 }
 
+/// the styling of a cell.
+/// can be set on the table, the table section, the row or the cell itself.
+/// all the styles are merged when rendering, with the more specifc styles
+/// overriding the cells of the parents.
+/// the priority is
+/// Cell > Row > TableSection > Table
 class CellStyle {
   final int paddingLeft;
 
@@ -96,6 +102,7 @@ class CellStyle {
   }
 }
 
+///A single cell of a table
 class Cell {
   final String content;
   final int columnSpan;
@@ -127,6 +134,7 @@ class Cell {
   }
 }
 
+///a row of a table with cells and a default cellstyle
 class Row {
   final List<Cell> cells;
   final CellStyle cellStyle;
@@ -150,6 +158,7 @@ class Row {
   }
 }
 
+/// A section of the Table. Header/Body/Footer.
 class TableSection {
   final List<Row> rows;
   final CellStyle cellStyle;
@@ -200,6 +209,9 @@ class TableStyle {
   }
 }
 
+/// a cell with a position in the table and the style
+/// that is created by merging the styles of the
+/// [Table], the [TableSection], the [Row] and the [Cell]
 class PositionedCell {
   final int rowIndex;
   final int columnIndex;
