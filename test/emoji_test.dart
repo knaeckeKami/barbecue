@@ -3,7 +3,7 @@ import 'package:string_validator/string_validator.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test("can match emojis", () {
+  test('can match emojis', () {
     expect(isFullWidth('🤡'), isTrue);
   });
 
@@ -13,9 +13,9 @@ void main() {
         cellStyle: CellStyle(borderLeft: true, borderRight: true),
         body: TableSection(rows: [
           Row(cells: [
-            Cell("1"),
-            Cell("🤡"),
-            Cell("1"),
+            Cell('1'),
+            Cell('🤡'),
+            Cell('1'),
           ])
         ]));
 
@@ -34,9 +34,9 @@ void main() {
         cellStyle: CellStyle(borderLeft: true, borderRight: true),
         body: TableSection(rows: [
           Row(cells: [
-            Cell("1"),
-            Cell("🤡"),
-            Cell("1"),
+            Cell('1'),
+            Cell('🤡'),
+            Cell('1'),
           ])
         ]));
 
@@ -54,25 +54,25 @@ void main() {
     final table = Table(
         body: TableSection(rows: [
       Row(cells: [
-        Cell("🤡",
+        Cell('🤡',
             columnSpan: 5,
             style: CellStyle(alignment: TextAlignment.MiddleCenter)),
       ]),
       Row(cells: [
         Cell(
-          "1",
+          '1',
         ),
         Cell(
-          "2",
+          '2',
         ),
         Cell(
-          "3",
+          '3',
         ),
         Cell(
-          "4",
+          '4',
         ),
         Cell(
-          "5",
+          '5',
         ),
       ])
     ]));
@@ -89,22 +89,22 @@ void main() {
     final table = Table(
         body: TableSection(rows: [
           Row(cells: [
-            Cell("🤡",
+            Cell('🤡',
                 columnSpan: 4,
                 style: CellStyle(alignment: TextAlignment.MiddleCenter)),
           ]),
           Row(cells: [
             Cell(
-              "1",
+              '1',
             ),
             Cell(
-              "2",
+              '2',
             ),
             Cell(
-              "3",
+              '3',
             ),
             Cell(
-              "4",
+              '4',
             ),
           ])
         ]));

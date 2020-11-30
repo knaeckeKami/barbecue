@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:meta/meta.dart';
 
 enum TextAlignment {
   TopLeft,
@@ -14,23 +13,23 @@ enum TextAlignment {
 }
 
 class CellStyle {
-  final int paddingLeft;
+  final int? paddingLeft;
 
-  final int paddingRight;
+  final int? paddingRight;
 
-  final int paddingTop;
+  final int? paddingTop;
 
-  final int paddingBottom;
+  final int? paddingBottom;
 
-  final bool borderLeft;
+  final bool? borderLeft;
 
-  final bool borderRight;
+  final bool? borderRight;
 
-  final bool borderTop;
+  final bool? borderTop;
 
-  final bool borderBottom;
+  final bool? borderBottom;
 
-  final TextAlignment alignment;
+  final TextAlignment? alignment;
 
   const CellStyle(
       {this.paddingLeft,
@@ -75,10 +74,7 @@ class CellStyle {
     return 'CellStyle{paddingLeft: $paddingLeft, paddingRight: $paddingRight, paddingTop: $paddingTop, paddingBottom: $paddingBottom, borderLeft: $borderLeft, borderRight: $borderRight, borderTop: $borderTop, borderBottom: $borderBottom, alignment: $alignment}';
   }
 
-  CellStyle operator +(CellStyle override) {
-    if (this == null) {
-      return override;
-    }
+  CellStyle operator +(CellStyle? override) {
     if (override == null) {
       return this;
     }
@@ -100,7 +96,7 @@ class Cell {
   final String content;
   final int columnSpan;
   final int rowSpan;
-  final CellStyle style;
+  final CellStyle? style;
 
   const Cell(this.content, {this.columnSpan = 1, this.rowSpan = 1, this.style});
 
@@ -129,9 +125,9 @@ class Cell {
 
 class Row {
   final List<Cell> cells;
-  final CellStyle cellStyle;
+  final CellStyle? cellStyle;
 
-  const Row({@required this.cells, this.cellStyle}) : assert(cells != null);
+  const Row({required this.cells, this.cellStyle});
 
   @override
   bool operator ==(Object other) =>
@@ -152,10 +148,9 @@ class Row {
 
 class TableSection {
   final List<Row> rows;
-  final CellStyle cellStyle;
+  final CellStyle? cellStyle;
 
-  const TableSection({@required this.rows, this.cellStyle})
-      : assert(rows != null);
+  const TableSection({required this.rows, this.cellStyle});
 
   @override
   bool operator ==(Object other) =>
@@ -178,8 +173,8 @@ class TableSection {
 enum BorderStyle { Hidden, Solid }
 
 class TableStyle {
-  final bool border;
-  final BorderStyle borderStyle;
+  final bool? border;
+  final BorderStyle? borderStyle;
 
   const TableStyle({this.border, this.borderStyle});
 
@@ -207,7 +202,10 @@ class PositionedCell {
   final CellStyle canonicalStyle;
 
   const PositionedCell(
-      {this.rowIndex, this.columnIndex, this.cell, this.canonicalStyle});
+      {required this.rowIndex,
+      required this.columnIndex,
+      required this.cell,
+      required this.canonicalStyle});
 
   @override
   bool operator ==(Object other) =>
