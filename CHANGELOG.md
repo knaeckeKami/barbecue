@@ -1,3 +1,5 @@
+## 0.4.0-nullsafety.0
+
 ## 0.3.0-alpha1
 
 - Emoji/Wide Character support
