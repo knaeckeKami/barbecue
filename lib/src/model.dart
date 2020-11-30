@@ -75,9 +75,6 @@ class CellStyle {
   }
 
   CellStyle operator +(CellStyle? override) {
-    if (this == null) {
-      return override!;
-    }
     if (override == null) {
       return this;
     }
@@ -130,7 +127,7 @@ class Row {
   final List<Cell> cells;
   final CellStyle? cellStyle;
 
-  const Row({required this.cells, this.cellStyle}) : assert(cells != null);
+  const Row({required this.cells, this.cellStyle});
 
   @override
   bool operator ==(Object other) =>
@@ -153,8 +150,7 @@ class TableSection {
   final List<Row> rows;
   final CellStyle? cellStyle;
 
-  const TableSection({required this.rows, this.cellStyle})
-      : assert(rows != null);
+  const TableSection({required this.rows, this.cellStyle});
 
   @override
   bool operator ==(Object other) =>

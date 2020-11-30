@@ -1,6 +1,5 @@
 import 'package:barbecue/src/int_count.dart';
 import 'package:barbecue/src/model.dart';
-import 'package:meta/meta.dart';
 
 class Table {
   final TableSection? header;

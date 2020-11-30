@@ -20,9 +20,9 @@ extension Render on Table {
     final rowBorderHeights = List<int>.filled(rowCount + 1, 0);
 
     for (final positionedCell in positionedCells) {
-      final rowIndex = positionedCell.rowIndex!;
-      final columnIndex = positionedCell.columnIndex!;
-      final cell = positionedCell.cell!;
+      final rowIndex = positionedCell.rowIndex;
+      final columnIndex = positionedCell.columnIndex;
+      final cell = positionedCell.cell;
       final canonicalStyle = positionedCell.canonicalStyle;
 
       final layout = layouts[cell];
@@ -46,24 +46,24 @@ extension Render on Table {
       }
 
       if ((columnIndex == 0 && tableStyle?.border == true ||
-              canonicalStyle?.borderLeft == true) &&
+              canonicalStyle.borderLeft == true) &&
           (columnIndex > 0 || tableStyle?.borderStyle != BorderStyle.Hidden)) {
         columnBorderWidths[columnIndex] = 1;
       }
       if ((columnIndex + columnSpan == columnCount &&
                   tableStyle?.border == true ||
-              canonicalStyle?.borderRight == true) &&
+              canonicalStyle.borderRight == true) &&
           (columnIndex + columnSpan < columnCount! ||
               tableStyle?.borderStyle != BorderStyle.Hidden)) {
         columnBorderWidths[columnIndex + columnSpan] = 1;
       }
       if ((rowIndex == 0 && tableStyle?.border == true ||
-              canonicalStyle?.borderTop == true) &&
+              canonicalStyle.borderTop == true) &&
           (rowIndex > 0 || tableStyle?.borderStyle != BorderStyle.Hidden)) {
         rowBorderHeights[rowIndex] = 1;
       }
       if ((rowIndex + rowSpan == rowCount && tableStyle?.border == true ||
-              canonicalStyle?.borderBottom == true) &&
+              canonicalStyle.borderBottom == true) &&
           (rowIndex + rowSpan < rowCount ||
               tableStyle?.borderStyle != BorderStyle.Hidden)) {
         rowBorderHeights[rowIndex + rowSpan] = 1;
@@ -71,14 +71,14 @@ extension Render on Table {
     }
 
     final sortedColumnSpanCells = positionedCells
-        .where(((it) => it.cell!.columnSpan > 1))
+        .where(((it) => it.cell.columnSpan > 1))
         .toList()
           ..sort((a, b) =>
-              Comparable.compare(a.cell!.columnSpan, b.cell!.columnSpan));
+              Comparable.compare(a.cell.columnSpan, b.cell.columnSpan));
 
     for (final positionedCell in sortedColumnSpanCells) {
-      final columnIndex = positionedCell.columnIndex!;
-      final cell = positionedCell.cell!;
+      final columnIndex = positionedCell.columnIndex;
+      final cell = positionedCell.cell;
 
       final layout = layouts[cell]!;
       final columnSpan = cell.columnSpan;
@@ -115,13 +115,13 @@ extension Render on Table {
     }
 
     final sortedRowSpanCells = positionedCells
-        .where(((it) => it.cell!.rowSpan > 1))
+        .where(((it) => it.cell.rowSpan > 1))
         .toList()
-          ..sort((a, b) => Comparable.compare(a.cell!.rowSpan, b.cell!.rowSpan));
+          ..sort((a, b) => Comparable.compare(a.cell.rowSpan, b.cell.rowSpan));
 
     for (final positionedCell in sortedRowSpanCells) {
-      final rowIndex = positionedCell.rowIndex!;
-      final cell = positionedCell.cell!;
+      final rowIndex = positionedCell.rowIndex;
+      final cell = positionedCell.cell;
 
       final layout = layouts[cell]!;
       final rowSpan = cell.rowSpan;
@@ -275,10 +275,10 @@ extension Render on Table {
                 (rowIndex == 0 || rowIndex == rowCount) &&
                     tableStyle?.border == true)) {
           final columnDrawEndIndex =
-              tableLefts[columnIndex + 1]!; // Safe given cell != null
+              tableLefts[columnIndex + 1]; // Safe given cell != null
           final borderChar = border.horizontal;
           for (final columnDrawIndex in [
-            for (int i = columnDrawStartIndex! + columnBorderWidth;
+            for (int i = columnDrawStartIndex + columnBorderWidth;
                 i < columnDrawEndIndex;
                 i++)
               i
@@ -290,15 +290,15 @@ extension Render on Table {
     }
 
     positionedCells.forEach((positionedCell) {
-      final rowIndex = positionedCell.rowIndex!;
-      final columnIndex = positionedCell.columnIndex!;
-      final cell = positionedCell.cell!;
+      final rowIndex = positionedCell.rowIndex;
+      final columnIndex = positionedCell.columnIndex;
+      final cell = positionedCell.cell;
 
       final cellLeft =
-          tableLefts[columnIndex]! + columnBorderWidths[columnIndex];
-      final cellRight = tableLefts[columnIndex + cell.columnSpan]!;
-      final cellTop = tableTops[rowIndex]! + rowBorderHeights[rowIndex];
-      final cellBottom = tableTops[rowIndex + cell.rowSpan]!;
+          tableLefts[columnIndex] + columnBorderWidths[columnIndex];
+      final cellRight = tableLefts[columnIndex + cell.columnSpan];
+      final cellTop = tableTops[rowIndex] + rowBorderHeights[rowIndex];
+      final cellBottom = tableTops[rowIndex + cell.rowSpan];
 
       final canvas = surface.clip(cellLeft, cellRight, cellTop, cellBottom);
       final layout = layouts[cell]!;

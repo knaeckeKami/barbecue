@@ -19,15 +19,15 @@ class SimpleLayout implements TextLayout {
 
   SimpleLayout(this.cell);
 
-  int get leftPadding => cell.canonicalStyle?.paddingLeft ?? 0;
+  int get leftPadding => cell.canonicalStyle.paddingLeft ?? 0;
 
-  int get topPadding => cell.canonicalStyle?.paddingTop ?? 0;
+  int get topPadding => cell.canonicalStyle.paddingTop ?? 0;
 
   @override
   int measureWidth() {
     return leftPadding +
-        (cell.canonicalStyle?.paddingRight ?? 0) +
-        cell.cell!.content.split('\n').fold<int>(
+        (cell.canonicalStyle.paddingRight ?? 0) +
+        cell.cell.content.split('\n').fold<int>(
               0,
               (previousValue, element) =>
                   max(previousValue, element.visualCodePointCount),
@@ -38,15 +38,15 @@ class SimpleLayout implements TextLayout {
   int measureHeight() {
     return 1 +
         topPadding +
-        (cell.canonicalStyle?.paddingBottom ?? 0) +
-        '\n'.allMatches(cell.cell!.content).length;
+        (cell.canonicalStyle.paddingBottom ?? 0) +
+        '\n'.allMatches(cell.cell.content).length;
   }
 
   @override
   void draw(TextCanvas canvas) {
     final height = measureHeight();
 
-    final alignment = cell.canonicalStyle?.alignment ?? TextAlignment.TopLeft;
+    final alignment = cell.canonicalStyle.alignment ?? TextAlignment.TopLeft;
 
     final top = () {
       switch (alignment) {
@@ -67,9 +67,9 @@ class SimpleLayout implements TextLayout {
 
     var index = 0;
 
-    for (final line in cell.cell!.content.split('\n')) {
+    for (final line in cell.cell.content.split('\n')) {
       final lineWidth = leftPadding +
-          (cell.canonicalStyle?.paddingRight ?? 0) +
+          (cell.canonicalStyle.paddingRight ?? 0) +
           line.visualCodePointCount;
       final left = () {
         switch (alignment) {
@@ -103,8 +103,8 @@ class EmojiAwareLayout extends SimpleLayout {
   @override
   int measureWidth() {
     return leftPadding +
-        (cell.canonicalStyle?.paddingRight ?? 0) +
-        cell.cell!.content.split('\n').fold<int>(
+        (cell.canonicalStyle.paddingRight ?? 0) +
+        cell.cell.content.split('\n').fold<int>(
               0,
               (previousValue, element) => max(previousValue,
                   element.visualCodePointCount + element.emojiCount),
@@ -115,7 +115,7 @@ class EmojiAwareLayout extends SimpleLayout {
   void draw(TextCanvas canvas) {
     final height = measureHeight();
 
-    final alignment = cell.canonicalStyle?.alignment ?? TextAlignment.TopLeft;
+    final alignment = cell.canonicalStyle.alignment ?? TextAlignment.TopLeft;
 
     final top = () {
       switch (alignment) {
@@ -136,9 +136,9 @@ class EmojiAwareLayout extends SimpleLayout {
 
     var index = 0;
 
-    for (final line in cell.cell!.content.split('\n')) {
+    for (final line in cell.cell.content.split('\n')) {
       final lineWidth = leftPadding +
-          (cell.canonicalStyle?.paddingRight ?? 0) +
+          (cell.canonicalStyle.paddingRight ?? 0) +
           line.visualCodePointCount;
       final left = () {
         switch (alignment) {
