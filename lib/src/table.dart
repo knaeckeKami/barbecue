@@ -3,41 +3,41 @@ import 'package:barbecue/src/model.dart';
 import 'package:meta/meta.dart';
 
 class Table {
-  final TableSection header;
+  final TableSection? header;
   final TableSection body;
-  final TableSection footer;
+  final TableSection? footer;
   final CellStyle cellStyle;
-  final TableStyle tableStyle;
+  final TableStyle? tableStyle;
 
   final int rowCount;
 
-  int columnCount;
-  List<PositionedCell> positionedCells;
+  int? columnCount;
+  late List<PositionedCell> positionedCells;
 
-  List<List<PositionedCell>> _cellTable;
+  late List<List<PositionedCell?>> _cellTable;
 
   Table({
     this.header,
-    @required this.body,
+    required this.body,
     this.footer,
     this.cellStyle = const CellStyle(),
     this.tableStyle,
-  })  : assert(body != null, 'the body of the table must not be null'),
-        rowCount = (header?.rows?.length ?? 0) +
+  })  :
+        rowCount = (header?.rows.length ?? 0) +
             body.rows.length +
-            (footer?.rows?.length ?? 0) {
+            (footer?.rows.length ?? 0) {
     final rowSpanCarries = IntCounts();
 
     final positionedCells = <PositionedCell>[];
-    final _cellTable = <List<PositionedCell>>[];
+    final List<List<PositionedCell?>> _cellTable = <List<PositionedCell?>>[];
     var rowIndex = 0;
 
     for (final section
         in [header, body, footer].where((element) => element != null)) {
-      final sectionStyle = cellStyle + section.cellStyle;
+      final sectionStyle = cellStyle + section!.cellStyle;
       for (final row in section.rows) {
         final rowStyle = sectionStyle + row.cellStyle;
-        final cellRow = <PositionedCell>[];
+        final cellRow = <PositionedCell?>[];
         _cellTable.add(cellRow);
         var columnIndex = 0;
         var rawColumnIndex = 0;
@@ -91,7 +91,7 @@ class Table {
     this._cellTable = _cellTable;
   }
 
-  PositionedCell getOrNull(int row, int column) {
+  PositionedCell? getOrNull(int row, int column) {
     if (row < 0 || column < 0 || row >= _cellTable.length) {
       return null;
     }

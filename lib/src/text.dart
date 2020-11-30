@@ -4,7 +4,7 @@ import 'package:string_validator/string_validator.dart';
 extension Visual on String {
   static final ansiColorEscape = RegExp('\u001B' r'\[\d+(;\d+)*m');
 
-  int visualIndex(int index) {
+  int visualIndex(int? index) {
     var currentIndex = 0;
     var remaining = index;
     while (true) {
@@ -16,13 +16,13 @@ extension Visual on String {
 
       final jump = codePointCount(
           startIndex: currentIndex, endIndex: match.start + currentIndex);
-      if (jump > remaining) break;
+      if (jump > remaining!) break;
 
       remaining -= jump;
       currentIndex = match.end + currentIndex;
     }
     final runes = Runes(this);
-    while (remaining > 0) {
+    while (remaining! > 0) {
       final codePoint = runes.elementAt(currentIndex);
       currentIndex += codePoint >= 65536 ? 2 : 1;
       remaining--;
@@ -53,7 +53,7 @@ extension Visual on String {
     return count;
   }
 
-  int codePointCount({int startIndex = 0, int endIndex}) {
+  int codePointCount({int startIndex = 0, int? endIndex}) {
     endIndex ??= length;
 
     return Runes(substring(startIndex, endIndex)).length;

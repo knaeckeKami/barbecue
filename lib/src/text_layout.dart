@@ -27,7 +27,7 @@ class SimpleLayout implements TextLayout {
   int measureWidth() {
     return leftPadding +
         (cell.canonicalStyle?.paddingRight ?? 0) +
-        cell.cell.content.split('\n').fold<int>(
+        cell.cell!.content.split('\n').fold<int>(
               0,
               (previousValue, element) =>
                   max(previousValue, element.visualCodePointCount),
@@ -39,7 +39,7 @@ class SimpleLayout implements TextLayout {
     return 1 +
         topPadding +
         (cell.canonicalStyle?.paddingBottom ?? 0) +
-        '\n'.allMatches(cell.cell.content).length;
+        '\n'.allMatches(cell.cell!.content).length;
   }
 
   @override
@@ -67,7 +67,7 @@ class SimpleLayout implements TextLayout {
 
     var index = 0;
 
-    for (final line in cell.cell.content.split('\n')) {
+    for (final line in cell.cell!.content.split('\n')) {
       final lineWidth = leftPadding +
           (cell.canonicalStyle?.paddingRight ?? 0) +
           line.visualCodePointCount;
@@ -104,7 +104,7 @@ class EmojiAwareLayout extends SimpleLayout {
   int measureWidth() {
     return leftPadding +
         (cell.canonicalStyle?.paddingRight ?? 0) +
-        cell.cell.content.split('\n').fold<int>(
+        cell.cell!.content.split('\n').fold<int>(
               0,
               (previousValue, element) => max(previousValue,
                   element.visualCodePointCount + element.emojiCount),
@@ -136,7 +136,7 @@ class EmojiAwareLayout extends SimpleLayout {
 
     var index = 0;
 
-    for (final line in cell.cell.content.split('\n')) {
+    for (final line in cell.cell!.content.split('\n')) {
       final lineWidth = leftPadding +
           (cell.canonicalStyle?.paddingRight ?? 0) +
           line.visualCodePointCount;

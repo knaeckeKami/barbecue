@@ -1,7 +1,8 @@
 import 'dart:math';
 
+/// todo use typed_data
 class IntCounts {
-  var data = List<int>(10);
+  var data = List<int>.filled(10, 0);
 
   var size = 0;
 
@@ -16,7 +17,7 @@ class IntCounts {
   void set(int index, int value) {
     final newSize = index + 1;
     while (newSize >= data.length) {
-      final newData = List<int>(data.length * 2);
+      final newData = List<int>.filled(data.length * 2, 0);
       newData.setRange(0, data.length, data);
       data = newData;
     }
