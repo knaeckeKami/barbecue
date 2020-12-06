@@ -43,7 +43,6 @@ void main() {
     final tableString =
         (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
 
-
     expect(tableString, '''
 ┌─┬──┬─┐
 │1│🤡${EmojiAwareLayout.zeroWidthJoiner}│1│
@@ -88,33 +87,55 @@ void main() {
   test('emojiAwareLayout can handle emojis with padding and centering 2', () {
     final table = Table(
         body: TableSection(rows: [
-          Row(cells: [
-            Cell('🤡',
-                columnSpan: 4,
-                style: CellStyle(alignment: TextAlignment.MiddleCenter)),
-          ]),
-          Row(cells: [
-            Cell(
-              '1',
-            ),
-            Cell(
-              '2',
-            ),
-            Cell(
-              '3',
-            ),
-            Cell(
-              '4',
-            ),
-          ])
-        ]));
+      Row(cells: [
+        Cell('🤡',
+            columnSpan: 4,
+            style: CellStyle(alignment: TextAlignment.MiddleCenter)),
+      ]),
+      Row(cells: [
+        Cell(
+          '1',
+        ),
+        Cell(
+          '2',
+        ),
+        Cell(
+          '3',
+        ),
+        Cell(
+          '4',
+        ),
+      ])
+    ]));
 
     final tableString =
-    (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
-
+        (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
 
     expect(tableString, '''
  🤡‍ 
 1234''');
+  });
+
+  test('bold characters', () {
+    final table = Table(
+        body: TableSection(
+            cellStyle: CellStyle(borderRight: true),
+            rows: [
+      Row(cells: [Cell('𝗛𝗲𝗮𝗱𝗲𝗿')]),
+      Row(cells: [
+        Cell(
+          '123456',
+        ),
+      ])
+    ]));
+
+    final tableString =
+        (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
+
+    print(tableString);
+
+    expect(tableString, '''
+𝗛𝗲𝗮𝗱𝗲𝗿
+123456''');
   });
 }

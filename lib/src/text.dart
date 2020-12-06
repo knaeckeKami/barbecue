@@ -58,3 +58,13 @@ extension Visual on String {
     return Runes(substring(startIndex, endIndex)).length;
   }
 }
+
+
+final ansiPattern =
+  '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)|(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))';
+
+final ansiRegix = RegExp(ansiPattern, multiLine: true, unicode: true);
+
+extension Ansi on String {
+  String stripAnsi() => replaceAll(ansiRegix, '');
+}

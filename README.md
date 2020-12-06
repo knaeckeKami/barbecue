@@ -17,6 +17,7 @@ Features:
  - Text alignment (bottom/middle/top - left/middle/right)
  - Row and column spans
  - ANSI Colors and backgrounds! (see example)
+ - LIMITED support for emojis and other wide characters
  
 ## Examples
 
@@ -181,8 +182,45 @@ prints
 ![image](https://i.imgur.com/1HYQdbV.png)
 
 
-## TODO
+# Emojis and other wide characters
 
-☐ Support custom borders with arbitrary unicode characters (not just characters that can be stored in a single utf 16 codepoint) 
+By default, the layout algorithm assumes a real monospaced font, where every character is the exact same
+width as other characters. Most modern "Mono" fonts don't work like that.
 
-☐ Support emoji and other wide characters (they currently mess up the layout - a fully monospaced font is assumed, however most fonts render emojis as 2 characters wide) 
+See for example this "monospaced" block:
+
+```
+😊😊😊
+123
+```
+
+In a fully monospaced font, the first line with the emojis would be exactly as wide as the second line.
+Chances are, that you see this block rendered like this (this depends on the font used):
+
+![emoji_render][logo]
+
+Text based table layouts don't work if some characters are wider than others.
+Luckily, most fonts used in terminals just render most emojis twice as wide as other characters:
+Something like:
+
+```
+😊😊😊|
+123456|
+```
+
+Will likely render like that in your terminal:
+
+![emoji_render][logo]
+
+
+With the assumption that emojis are rendered twice as wide, we can build a valid text-table again.
+Unfortunately, this is not going to work with all fonts, and not with all characters.
+
+Some characters are rendered with a fractional width of a default character.
+
+See for example bold unicode characters:
+
+```
+𝗛𝗲𝗮𝗱𝗲𝗿|
+123456|
+```
