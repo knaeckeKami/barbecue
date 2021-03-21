@@ -43,7 +43,6 @@ void main() {
     final tableString =
         (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
 
-
     expect(tableString, '''
 ┌─┬──┬─┐
 │1│🤡${EmojiAwareLayout.zeroWidthJoiner}│1│
@@ -55,7 +54,7 @@ void main() {
         body: TableSection(rows: [
       Row(cells: [
         Cell('🤡',
-            columnSpan: 5,
+            columnSpan: 4,
             style: CellStyle(alignment: TextAlignment.MiddleCenter)),
       ]),
       Row(cells: [
@@ -71,8 +70,39 @@ void main() {
         Cell(
           '4',
         ),
+      ])
+    ]));
+
+    final tableString =
+        (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
+
+    print(tableString);
+
+    expect(tableString, '''
+ 🤡‍ 
+1234''');
+  });
+
+  test('emojiAwareLayout can handle emojis with padding and centering 2', () {
+    final table = Table(
+        body: TableSection(rows: [
+      Row(cells: [
+        Cell('🤡',
+            columnSpan: 4,
+            style: CellStyle(alignment: TextAlignment.MiddleCenter)),
+      ]),
+      Row(cells: [
         Cell(
-          '5',
+          '1',
+        ),
+        Cell(
+          '2',
+        ),
+        Cell(
+          '3',
+        ),
+        Cell(
+          '4',
         ),
       ])
     ]));
@@ -81,40 +111,28 @@ void main() {
         (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
 
     expect(tableString, '''
-  🤡‍ 
-12345''');
-  });
-
-  test('emojiAwareLayout can handle emojis with padding and centering 2', () {
-    final table = Table(
-        body: TableSection(rows: [
-          Row(cells: [
-            Cell('🤡',
-                columnSpan: 4,
-                style: CellStyle(alignment: TextAlignment.MiddleCenter)),
-          ]),
-          Row(cells: [
-            Cell(
-              '1',
-            ),
-            Cell(
-              '2',
-            ),
-            Cell(
-              '3',
-            ),
-            Cell(
-              '4',
-            ),
-          ])
-        ]));
-
-    final tableString =
-    (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
-
-
-    expect(tableString, '''
  🤡‍ 
 1234''');
   });
+
+  test('bold characters', () {
+    final table = Table(
+        body: TableSection(cellStyle: CellStyle(borderRight: true), rows: [
+      Row(cells: [Cell('Ｈｅａｄｅｒ')]),
+      Row(cells: [
+        Cell(
+          '123456789abc',
+        ),
+      ])
+    ]));
+
+    final tableString =
+        (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
+
+    const expected = '''
+Ｈｅａｄｅｒ|
+123456789abc|''';
+
+    expect(tableString, expected);
+  }, skip: true);
 }

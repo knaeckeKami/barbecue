@@ -2,9 +2,7 @@ import 'dart:math';
 import 'package:barbecue/src/model.dart';
 import 'package:barbecue/src/text_surface.dart';
 import 'package:barbecue/src/text.dart';
-import 'package:characters/characters.dart';
 import 'package:meta/meta.dart';
-import 'package:string_validator/string_validator.dart';
 
 abstract class TextLayout {
   int measureWidth();
@@ -94,6 +92,8 @@ class SimpleLayout implements TextLayout {
   }
 }
 
+/// Layout that handles characters that are rendered as 2 glyphs wide in monospace fonts
+/// experimental, does not always behave correctly
 @experimental
 class EmojiAwareLayout extends SimpleLayout {
   EmojiAwareLayout(PositionedCell cell) : super(cell);
@@ -106,8 +106,8 @@ class EmojiAwareLayout extends SimpleLayout {
         (cell.canonicalStyle.paddingRight ?? 0) +
         cell.cell.content.split('\n').fold<int>(
               0,
-              (previousValue, element) => max(previousValue,
-                  element.visualCodePointCount + element.emojiCount),
+              (previousValue, element) =>
+                  max(previousValue, element.visualLength(withWideChars: true)),
             );
   }
 
@@ -139,7 +139,7 @@ class EmojiAwareLayout extends SimpleLayout {
     for (final line in cell.cell.content.split('\n')) {
       final lineWidth = leftPadding +
           (cell.canonicalStyle.paddingRight ?? 0) +
-          line.visualCodePointCount;
+          line.visualLength(withWideChars: true);
       final left = () {
         switch (alignment) {
           case TextAlignment.TopLeft:
@@ -157,17 +157,13 @@ class EmojiAwareLayout extends SimpleLayout {
         }
       }();
 
-      final emojiCount = line.emojiCount;
+      final emojiCount = line.wideCharCount;
 
-      final correctedLine = line + [for (var i = 0; i < emojiCount; i++) zeroWidthJoiner].join();
+      final correctedLine =
+          line + [for (var i = 0; i < emojiCount; i++) zeroWidthJoiner].join();
 
       canvas.write(top + index, left, correctedLine);
       index++;
     }
   }
-}
-
-extension EmojiCount on String {
-  int get emojiCount =>
-      Characters(this).where((char) => isFullWidth(char)).length;
 }

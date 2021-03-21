@@ -98,7 +98,7 @@ void main() {
     );
 
     final tableString = table.render();
-    
+
     expect(tableString, '''
 \x1B[38;5;2mtest\x1B[0m        
 111122223333''');

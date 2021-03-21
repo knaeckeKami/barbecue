@@ -1,3 +1,11 @@
+## 0.4.0
+
+- Null safe relese without suffix
+
+## 0.4.0-nullsafety.0
+
+- Null safety
+
 ## 0.3.0-alpha1
 
 - Emoji/Wide Character support
