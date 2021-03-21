@@ -1,7 +1,6 @@
-
-
 import 'package:characters/characters.dart';
 import 'package:string_validator/string_validator.dart';
+
 
 extension Visual on String {
   static final ansiColorEscape = RegExp('\u001B' r'\[\d+(;\d+)*m');
