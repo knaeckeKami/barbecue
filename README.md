@@ -197,7 +197,7 @@ See for example this "monospaced" block:
 In a fully monospaced font, the first line with the emojis would be exactly as wide as the second line.
 Chances are, that you see this block rendered like this (this depends on the font used):
 
-![emoji_render][logo]
+![emoji rendering](assets/emoji_glyph_render_1.png)
 
 Text based table layouts don't work if some characters are wider than others.
 Luckily, most fonts used in terminals just render most emojis twice as wide as other characters:
@@ -210,7 +210,7 @@ Something like:
 
 Will likely render like that in your terminal:
 
-![emoji_render][logo]
+![emoji rendering](assets/emoji_glyph_render_2.png)
 
 
 With the assumption that emojis are rendered twice as wide, we can build a valid text-table again.
