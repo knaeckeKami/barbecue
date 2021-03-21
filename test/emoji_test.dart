@@ -70,7 +70,6 @@ void main() {
         ),
         Cell(
           '4',
-
         ),
       ])
     ]));
@@ -88,7 +87,6 @@ void main() {
   test('emojiAwareLayout can handle emojis with padding and centering 2', () {
     final table = Table(
         body: TableSection(rows: [
-
       Row(cells: [
         Cell('🤡',
             columnSpan: 4,
@@ -109,7 +107,6 @@ void main() {
         ),
       ])
     ]));
-
 
     final tableString =
         (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
@@ -133,11 +130,9 @@ void main() {
     final tableString =
         (table.render(layoutFactory: (cell) => EmojiAwareLayout(cell)));
 
-
     const expected = '''
 Ｈｅａｄｅｒ|
 123456789abc|''';
-
 
     expect(tableString, expected);
   }, skip: true);

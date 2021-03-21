@@ -21,8 +21,7 @@ class Table {
     this.footer,
     this.cellStyle = const CellStyle(),
     this.tableStyle,
-  })  :
-        rowCount = (header?.rows.length ?? 0) +
+  }) : rowCount = (header?.rows.length ?? 0) +
             body.rows.length +
             (footer?.rows.length ?? 0) {
     final rowSpanCarries = IntCounts();

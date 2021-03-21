@@ -1,7 +1,6 @@
 import 'package:characters/characters.dart';
 import 'package:string_validator/string_validator.dart';
 
-
 extension Visual on String {
   static final ansiColorEscape = RegExp('\u001B' r'\[\d+(;\d+)*m');
 
@@ -61,13 +60,11 @@ extension Visual on String {
   }
 
   int visualLength({bool withWideChars = false}) =>
-      Characters(stripAnsi()).length +
-          (withWideChars ? wideCharCount : 0);
+      Characters(stripAnsi()).length + (withWideChars ? wideCharCount : 0);
 }
 
-
 final ansiPattern =
-  '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)|(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))';
+    '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)|(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))';
 
 final ansiRegix = RegExp(ansiPattern, multiLine: true, unicode: true);
 
@@ -76,6 +73,7 @@ extension Ansi on String {
 }
 
 extension WideCharCount on String {
-  int get wideCharCount =>
-      Characters(this).where((char) => isFullWidth(char) || isSurrogatePair(char)).length;
+  int get wideCharCount => Characters(this)
+      .where((char) => isFullWidth(char) || isSurrogatePair(char))
+      .length;
 }

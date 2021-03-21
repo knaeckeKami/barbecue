@@ -153,7 +153,7 @@ extension Render on Table {
       }
     }
 
-    final tableLefts = List<int>.filled(columnWidths.length + 1,0);
+    final tableLefts = List<int>.filled(columnWidths.length + 1, 0);
     int tableWidth;
 
     var left = 0;

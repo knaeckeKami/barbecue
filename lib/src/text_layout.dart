@@ -94,7 +94,6 @@ class SimpleLayout implements TextLayout {
   }
 }
 
-
 /// Layout that handles characters that are rendered as 2 glyphs wide in monospace fonts
 /// experimental, does not always behave correctly
 @experimental
@@ -109,8 +108,8 @@ class EmojiAwareLayout extends SimpleLayout {
         (cell.canonicalStyle.paddingRight ?? 0) +
         cell.cell.content.split('\n').fold<int>(
               0,
-              (previousValue, element) => max(previousValue,
-                  element.visualLength(withWideChars: true)),
+              (previousValue, element) =>
+                  max(previousValue, element.visualLength(withWideChars: true)),
             );
   }
 
@@ -162,12 +161,11 @@ class EmojiAwareLayout extends SimpleLayout {
 
       final emojiCount = line.wideCharCount;
 
-      final correctedLine = line + [for (var i = 0; i < emojiCount; i++) zeroWidthJoiner].join();
+      final correctedLine =
+          line + [for (var i = 0; i < emojiCount; i++) zeroWidthJoiner].join();
 
       canvas.write(top + index, left, correctedLine);
       index++;
     }
   }
 }
-
-

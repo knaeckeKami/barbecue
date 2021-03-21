@@ -35,10 +35,8 @@ void main() {
             .trimEveryLine());
   });
 
-  test("can handle bold chars", (){
-
+  test("can handle bold chars", () {
     expect("Ｈｅａｄｅｒ".visualLength(withWideChars: false), 6);
     expect("Ｈｅａｄｅｒ".visualLength(withWideChars: true), 12);
   });
-
 }
