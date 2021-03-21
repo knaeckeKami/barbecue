@@ -2,9 +2,7 @@ import 'dart:math';
 import 'package:barbecue/src/model.dart';
 import 'package:barbecue/src/text_surface.dart';
 import 'package:barbecue/src/text.dart';
-import 'package:characters/characters.dart';
 import 'package:meta/meta.dart';
-import 'package:string_validator/string_validator.dart';
 
 abstract class TextLayout {
   int measureWidth();

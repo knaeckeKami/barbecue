@@ -1,7 +1,6 @@
 import 'package:barbecue/barbecue.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:test/test.dart';
-import 'package:characters/characters.dart';
 
 void main() {
   test('can match emojis', () {

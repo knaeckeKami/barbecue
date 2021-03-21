@@ -27,7 +27,7 @@ class Table {
     final rowSpanCarries = IntCounts();
 
     final positionedCells = <PositionedCell>[];
-    final List<List<PositionedCell?>> _cellTable = <List<PositionedCell?>>[];
+    final _cellTable = <List<PositionedCell?>>[];
     var rowIndex = 0;
 
     for (final section

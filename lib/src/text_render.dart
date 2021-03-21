@@ -30,7 +30,7 @@ extension Render on Table {
       final columnSpan = cell.columnSpan;
       if (columnSpan == 1) {
         final currentWidth = columnWidths[columnIndex];
-        final contentWidth = layout!.measureWidth();
+        final contentWidth = layout.measureWidth();
         if (contentWidth > currentWidth) {
           columnWidths[columnIndex] = contentWidth;
         }
@@ -39,7 +39,7 @@ extension Render on Table {
       final rowSpan = cell.rowSpan;
       if (rowSpan == 1) {
         final currentHeight = rowHeights[rowIndex];
-        final contentHeight = layout!.measureHeight();
+        final contentHeight = layout.measureHeight();
         if (contentHeight > currentHeight) {
           rowHeights[rowIndex] = contentHeight;
         }
