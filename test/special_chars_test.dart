@@ -1,6 +1,7 @@
 import 'package:barbecue/barbecue.dart';
 import 'package:test/test.dart';
 import '../test/test_table_string_helper.dart';
+import 'package:barbecue/src/text.dart';
 
 void main() {
   test('can handle non-ascii chars', () {
@@ -33,4 +34,11 @@ void main() {
           ßäê;;Ф'''
             .trimEveryLine());
   });
+
+  test("can handle bold chars", (){
+
+    expect("Ｈｅａｄｅｒ".visualLength(withWideChars: false), 6);
+    expect("Ｈｅａｄｅｒ".visualLength(withWideChars: true), 12);
+  });
+
 }

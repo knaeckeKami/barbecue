@@ -1,3 +1,7 @@
+## 0.4.0
+
+- Null safe relese without suffix
+
 ## 0.4.0-nullsafety.0
 
 - Null safety

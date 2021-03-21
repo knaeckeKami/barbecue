@@ -224,3 +224,39 @@ See for example bold unicode characters:
 𝗛𝗲𝗮𝗱𝗲𝗿|
 123456|
 ```
+
+For emojis and other wide characters, you can use the experimental EmojiAwareLayout.
+
+Example:
+
+```dart
+  final table = Table(
+        body: TableSection(rows: [
+      Row(cells: [
+        Cell('🤡',
+            columnSpan: 4,
+            style: CellStyle(alignment: TextAlignment.MiddleCenter)),
+      ]),
+      Row(cells: [
+        Cell(
+          '1',
+        ),
+        Cell(
+          '2',
+        ),
+        Cell(
+          '3',
+        ),
+        Cell(
+          '4',
+        ),
+      ])
+    ]));
+  final tableString = table.render(layoutFactory: (cell) => EmojiAwareLayout(cell));
+```
+
+Your milage may wary. It is recommended not to use any unicode full-width or half-width characters
+with barbecue, as there are many platform, font or even terminal specific differences in how
+their glyphs are rendered, and this breaks the monospace-assumption of this package.
+
+There is no way of drawing text tables if the glyphs are rendered with fractional widths of 1.5x.
