@@ -29,10 +29,9 @@ abstract class TextCanvas {
 class TextSurface extends TextCanvas {
   final List<String> rowBuilders;
 
-  TextSurface(int width, int height)
+  TextSurface(super.width, super.height)
       : rowBuilders =
-            List.filled(height, [for (int i = 0; i < width; i++) ' '].join('')),
-        super(width, height);
+            List.filled(height, [for (int i = 0; i < width; i++) ' '].join(''));
 
   @override
   void setCharacter(int? row, int? column, Characters unicodeChar) {

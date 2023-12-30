@@ -72,6 +72,6 @@ void main() {
     // 3 UTF-8 bytes, full-width.
     expect(2, '\u5317a'.visualCodePointCount);
     // 4 UTF-8 bytes (2 * UTF-16), full-width.
-    expect(2, (String.fromCharCode(0x1F603) + 'a').visualCodePointCount);
+    expect(2, ('${String.fromCharCode(0x1F603)}a').visualCodePointCount);
   });
 }

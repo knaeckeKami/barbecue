@@ -27,7 +27,7 @@ void main() {
 
     expect(
       table.render(),
-      '''    
+      '''
         X      X      X
         XXX   XXX   XXX
         XXXXXXXXXXXXXXX
