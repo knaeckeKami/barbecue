@@ -11,11 +11,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    container:
-      image: google/dart:dev
-
     steps:
     - uses: actions/checkout@v4
+    - uses: dart-lang/setup-dart@v1
     - name: Install dependencies
       run: dart pub get
 
