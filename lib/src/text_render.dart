@@ -73,8 +73,8 @@ extension Render on Table {
     final sortedColumnSpanCells = positionedCells
         .where(((it) => it.cell.columnSpan > 1))
         .toList()
-          ..sort((a, b) =>
-              Comparable.compare(a.cell.columnSpan, b.cell.columnSpan));
+      ..sort(
+          (a, b) => Comparable.compare(a.cell.columnSpan, b.cell.columnSpan));
 
     for (final positionedCell in sortedColumnSpanCells) {
       final columnIndex = positionedCell.columnIndex;
@@ -117,7 +117,7 @@ extension Render on Table {
     final sortedRowSpanCells = positionedCells
         .where(((it) => it.cell.rowSpan > 1))
         .toList()
-          ..sort((a, b) => Comparable.compare(a.cell.rowSpan, b.cell.rowSpan));
+      ..sort((a, b) => Comparable.compare(a.cell.rowSpan, b.cell.rowSpan));
 
     for (final positionedCell in sortedRowSpanCells) {
       final rowIndex = positionedCell.rowIndex;
