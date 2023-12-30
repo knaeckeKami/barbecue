@@ -27,7 +27,7 @@ jobs:
       run: pub run test
 
     - name: Coverage
-      run: dart pub glocal activate coverage && dart pub global run coverage:test_with_coverage
+      run: dart pub global activate coverage && dart pub global run coverage:test_with_coverage
 
     - name: Upload coverage to codecov
       run: curl -s https://codecov.io/bash | bash
