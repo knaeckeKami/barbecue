@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:characters/characters.dart';
 
 class TextBorder {
@@ -7,10 +9,9 @@ class TextBorder {
     return TextBorder.fromCharacters(Characters(string));
   }
 
-  TextBorder.fromCharacters(Characters characters)
+  TextBorder.fromCharacters(this.characters)
       : assert(characters.length == 16,
             'Border string must contain exactly 16 characters, but got ${characters.length}'),
-        characters = characters,
         empty = characters.elementAt(0),
         down = characters.elementAt(1),
         up = characters.elementAt(2),

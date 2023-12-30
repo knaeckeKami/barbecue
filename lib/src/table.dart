@@ -27,7 +27,7 @@ class Table {
     final rowSpanCarries = IntCounts();
 
     final positionedCells = <PositionedCell>[];
-    final _cellTable = <List<PositionedCell?>>[];
+    final cellTable = <List<PositionedCell?>>[];
     var rowIndex = 0;
 
     for (final section
@@ -36,7 +36,7 @@ class Table {
       for (final row in section.rows) {
         final rowStyle = sectionStyle + row.cellStyle;
         final cellRow = <PositionedCell?>[];
-        _cellTable.add(cellRow);
+        cellTable.add(cellRow);
         var columnIndex = 0;
         var rawColumnIndex = 0;
         for (final cell in row.cells) {
@@ -44,7 +44,7 @@ class Table {
           // When found, add them to the current row, pushing remaining cells to the right.
           while (columnIndex < rowSpanCarries.size &&
               rowSpanCarries[columnIndex] > 0) {
-            cellRow.add(_cellTable[rowIndex - 1][columnIndex]);
+            cellRow.add(cellTable[rowIndex - 1][columnIndex]);
             rowSpanCarries.set(columnIndex, rowSpanCarries[columnIndex] - 1);
             columnIndex++;
           }
@@ -74,7 +74,7 @@ class Table {
         // When found, add them to the current row, filling any gaps with null.
         while (columnIndex < rowSpanCarries.size) {
           if (rowSpanCarries[columnIndex] > 0) {
-            cellRow.add(_cellTable[rowIndex - 1][columnIndex]);
+            cellRow.add(cellTable[rowIndex - 1][columnIndex]);
             rowSpanCarries.set(columnIndex, rowSpanCarries[columnIndex] - 1);
           } else {
             cellRow.add(null);
@@ -86,7 +86,7 @@ class Table {
     }
     columnCount = rowSpanCarries.size;
     this.positionedCells = positionedCells;
-    this._cellTable = _cellTable;
+    _cellTable = cellTable;
   }
 
   PositionedCell? getOrNull(int row, int column) {

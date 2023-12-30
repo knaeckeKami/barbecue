@@ -142,14 +142,14 @@ extension Render on Table {
         final commonSize = remainingSize ~/ rowSpan;
         final extraSize = remainingSize - (commonSize * rowSpan);
         var spanIndex = 0;
-        rowSpanIndices.forEach((targetRowIndex) {
+        for (var targetRowIndex in rowSpanIndices) {
           final additionalSize =
               (spanIndex < extraSize) ? commonSize + 1 : commonSize;
           final currentHeight = rowHeights[targetRowIndex];
           final newHeight = currentHeight + additionalSize;
           rowHeights[targetRowIndex] = newHeight;
           spanIndex++;
-        });
+        }
       }
     }
 
@@ -289,7 +289,7 @@ extension Render on Table {
       }
     }
 
-    positionedCells.forEach((positionedCell) {
+    for (var positionedCell in positionedCells) {
       final rowIndex = positionedCell.rowIndex;
       final columnIndex = positionedCell.columnIndex;
       final cell = positionedCell.cell;
@@ -303,7 +303,7 @@ extension Render on Table {
       final canvas = surface.clip(cellLeft, cellRight, cellTop, cellBottom);
       final layout = layouts[cell]!;
       layout.draw(canvas);
-    });
+    }
 
     return surface.toString();
   }

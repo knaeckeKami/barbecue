@@ -96,7 +96,7 @@ class SimpleLayout implements TextLayout {
 /// experimental, does not always behave correctly
 @experimental
 class EmojiAwareLayout extends SimpleLayout {
-  EmojiAwareLayout(PositionedCell cell) : super(cell);
+  EmojiAwareLayout(super.cell);
 
   static const zeroWidthJoiner = '\u200D';
 
