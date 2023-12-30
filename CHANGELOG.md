@@ -1,3 +1,7 @@
+## 0.5.0
+
+- update to Dart 3.0
+
 ## 0.4.0
 
 - Null safe relese without suffix
